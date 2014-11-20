@@ -8,8 +8,9 @@
 		<property name="db_encoding" value="UTF8" />
 	</properties>
 	<typeAliases>
-		<!-- 新浪微博数据 -->
+		<!-- 微博数据 -->
 		<typeAlias alias="SinaUserBaseInfo" type="zx.soft.weibo.api.domain.SinaUserBaseInfo" />
+		<typeAlias alias="TencentUserBaseInfo" type="zx.soft.weibo.api.domain.TencentUserBaseInfo" />
 		<typeAlias alias="UserInfosByLocationParams"
 			type="zx.soft.weibo.api.domain.UserInfosByLocationParams" />
 	</typeAliases>

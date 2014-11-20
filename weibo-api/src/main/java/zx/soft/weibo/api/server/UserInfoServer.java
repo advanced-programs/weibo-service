@@ -11,9 +11,9 @@ import zx.soft.weibo.api.application.UserInfoApplication;
 /**
  * 新浪用户信息服务
  * 1、GET基本信息
- *    http://localhost:8100/sina/users/{uid}   示例：1732243641
+ *    http://localhost:8100/weibos/{type}/users/{uid}   示例：sina/1732243641
  * 2、根据区域查询用户信息
- *    http://localhost:8100/sina/users/{province}/{city} 
+ *    http://localhost:8100/weibos/{type}/users/{province}/{city} 
  *     
  * @author wgybzb
  *
@@ -42,7 +42,7 @@ public class UserInfoServer {
 	public void start() {
 		component.getServers().add(Protocol.HTTP, PORT);
 		try {
-			component.getDefaultHost().attach("/sina", userInfoApplication);
+			component.getDefaultHost().attach("/weibos", userInfoApplication);
 			component.start();
 		} catch (Exception e) {
 			throw new RuntimeException(e);

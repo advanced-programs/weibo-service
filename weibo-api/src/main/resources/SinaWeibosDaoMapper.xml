@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zx.soft.weibo.api.sina.SinaWeibosDao">
+<mapper namespace="zx.soft.weibo.api.sina.WeibosDao">
 
-	<!-- 获取某个地区的用户基本信息 -->
-	<select id="getUserInfosByLocation" parameterType="UserInfosByLocationParams"
+	<!-- 新浪：获取某个地区的用户基本信息 -->
+	<select id="getSinaUserInfosByLocation" parameterType="UserInfosByLocationParams"
 		resultType="SinaUserBaseInfo">
+		SELECT * FROM ${tablename} LIMIT #{count};
+	</select>
+	
+	<!-- 腾讯：获取某个地区的用户基本信息 -->
+	<select id="getTencentUserInfosByLocation" parameterType="UserInfosByLocationParams"
+		resultType="TencentUserBaseInfo">
 		SELECT * FROM ${tablename} LIMIT #{count};
 	</select>
 
