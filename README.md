@@ -1,5 +1,5 @@
 
-# 舆情监控服务项目
+# 微博舆情监控服务项目
 
 > 基于Java实现。
 
@@ -15,27 +15,15 @@
 
 ### 项目起因
 
-本项目主要服务于舆情监控底层架构。
+本项目主要服务于微博舆情监控底层架构。
 
 ### 项目框架
 
-`sentiment-parent`: jar和插件依赖工程
+`weibo-sina`: 新浪微博服务
 
-`sentiment-algorithm`: 基础数据结构和数据挖掘算法
+`weibo-tencent`: 腾讯微博服务
 
-`sentiment-utils`: 工具类
-
-`sentiment-dao`: 数据接口层
-
-`sentiment-cache`: 数据缓存层
-
-`sentiment-hdfs`: HDFS服务层
-
-`sentiment-solr`: solr索引搜索工程
-
-`sentiment-control`: 多服务控制层
-
-`sentiment-web`: API接口服务层
+`weibo-api`: 接口服务
 
 
 > **备注:** 框架持续更新中。
