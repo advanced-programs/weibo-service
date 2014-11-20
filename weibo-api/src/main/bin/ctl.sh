@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mainClass=zx.soft.sina.weibo.driver.SinaWeibosDriver
+mainClass=zx.soft.weibo.api.driver.WeiboApiDriver
 
 # resolve links - $0 may be a softlink
 PRG="$0"

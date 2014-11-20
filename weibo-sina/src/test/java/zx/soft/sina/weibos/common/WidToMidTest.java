@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import zx.soft.sina.weibos.common.WidToMid;
+import zx.soft.sina.weibo.common.WidToMid;
 
 public class WidToMidTest {
 

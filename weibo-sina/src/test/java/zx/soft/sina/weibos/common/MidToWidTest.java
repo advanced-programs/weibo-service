@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import zx.soft.sina.weibos.common.MidToWid;
+import zx.soft.sina.weibo.common.MidToWid;
 
 public class MidToWidTest {
 
