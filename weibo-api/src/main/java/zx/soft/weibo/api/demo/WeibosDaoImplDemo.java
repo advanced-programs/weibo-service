@@ -4,9 +4,9 @@ import java.util.List;
 
 import zx.soft.utils.json.JsonUtils;
 import zx.soft.weibo.api.common.MybatisConfig;
+import zx.soft.weibo.api.dao.WeibosDaoImpl;
 import zx.soft.weibo.api.domain.SinaUserBaseInfo;
 import zx.soft.weibo.api.domain.TencentUserBaseInfo;
-import zx.soft.weibo.api.sina.WeibosDaoImpl;
 
 public class WeibosDaoImplDemo {
 

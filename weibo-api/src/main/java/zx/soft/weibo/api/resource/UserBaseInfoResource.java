@@ -10,9 +10,9 @@ import zx.soft.utils.codec.URLCodecUtils;
 import zx.soft.weibo.api.application.UserInfoApplication;
 import zx.soft.weibo.api.domain.ErrorResponse;
 
-public class UserInfoResource extends ServerResource {
+public class UserBaseInfoResource extends ServerResource {
 
-	private static Logger logger = LoggerFactory.getLogger(UserInfoResource.class);
+	private static Logger logger = LoggerFactory.getLogger(UserBaseInfoResource.class);
 
 	private UserInfoApplication application;
 

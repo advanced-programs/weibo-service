@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.sina;
+package zx.soft.weibo.api.dao;
 
 import java.util.List;
 
@@ -31,9 +31,9 @@ public class WeibosDaoImpl {
 	 */
 	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, int province, int city, int count) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
-			WeibosDao sinaWeibosDao = sqlSession.getMapper(WeibosDao.class);
-			return sinaWeibosDao.getSinaUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city,
-					count));
+			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
+			return weibosDao
+					.getSinaUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city, count));
 		}
 	}
 
@@ -42,8 +42,8 @@ public class WeibosDaoImpl {
 	 */
 	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, int province, int city, int count) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
-			WeibosDao sinaWeibosDao = sqlSession.getMapper(WeibosDao.class);
-			return sinaWeibosDao.getTencentUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city,
+			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
+			return weibosDao.getTencentUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city,
 					count));
 		}
 	}

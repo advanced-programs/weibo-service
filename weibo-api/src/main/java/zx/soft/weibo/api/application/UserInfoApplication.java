@@ -7,23 +7,26 @@ import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 import zx.soft.weibo.api.common.MybatisConfig;
+import zx.soft.weibo.api.dao.WeibosDaoImpl;
 import zx.soft.weibo.api.domain.SinaUserBaseInfo;
 import zx.soft.weibo.api.domain.TencentUserBaseInfo;
-import zx.soft.weibo.api.resource.UserInfoResource;
-import zx.soft.weibo.api.sina.WeibosDaoImpl;
+import zx.soft.weibo.api.domain.UserWeibosGroup;
+import zx.soft.weibo.api.resource.UserBaseInfoResource;
+import zx.soft.weibo.api.resource.UserWeibosInfoResource;
 
 public class UserInfoApplication extends Application {
 
-	private final WeibosDaoImpl sinaWeibos;
+	private final WeibosDaoImpl weibosDaoImpl;
 
 	public UserInfoApplication() {
-		sinaWeibos = new WeibosDaoImpl(MybatisConfig.ServerEnum.weibos);
+		weibosDaoImpl = new WeibosDaoImpl(MybatisConfig.ServerEnum.weibos);
 	}
 
 	@Override
 	public Restlet createInboundRoot() {
 		Router router = new Router(getContext());
-		router.attach("/{type}/users/{province}/{city}", UserInfoResource.class);
+		router.attach("/{type}/users/{province}/{city}", UserBaseInfoResource.class);
+		router.attach("/{type}/users/weibos/{uid}/group", UserWeibosInfoResource.class);
 		return router;
 	}
 
@@ -31,14 +34,28 @@ public class UserInfoApplication extends Application {
 	 * 新浪：获取某个地区的用户基本信息
 	 */
 	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, int province, int city, int count) {
-		return sinaWeibos.getSinaUserInfosByLocation(tablename, province, city, count);
+		return weibosDaoImpl.getSinaUserInfosByLocation(tablename, province, city, count);
 	}
 
 	/**
 	 * 腾讯：获取某个地区的用户基本信息
 	 */
 	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, int province, int city, int count) {
-		return sinaWeibos.getTencentUserInfosByLocation(tablename, province, city, count);
+		return weibosDaoImpl.getTencentUserInfosByLocation(tablename, province, city, count);
+	}
+
+	/**
+	 * 新浪：根据时间段统计用户的发博数量
+	 */
+	public UserWeibosGroup analysisSinaUserWeibosByInterval(String tablename, String uid) {
+		return new UserWeibosGroup().instance();
+	}
+
+	/**
+	 * 腾讯：根据时间段统计用户的发博数量
+	 */
+	public UserWeibosGroup analysisTencentUserWeibosByInterval(String tablename, String uid) {
+		return new UserWeibosGroup().instance();
 	}
 
 	public void close() {

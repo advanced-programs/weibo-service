@@ -14,7 +14,10 @@ import zx.soft.weibo.api.application.UserInfoApplication;
  *    http://localhost:8100/weibos/{type}/users/{uid}   示例：sina/1732243641
  * 2、根据区域查询用户信息
  *    http://localhost:8100/weibos/{type}/users/{province}/{city} 
- *     
+ * 3、按时间段统计用户的微博量
+ *    增量和全量统计：
+ *    http://localhost:8100/weibos/{type}/users/weibos/{uid}/group    
+ *    
  * @author wgybzb
  *
  */

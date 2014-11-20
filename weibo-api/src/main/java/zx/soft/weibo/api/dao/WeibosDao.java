@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.sina;
+package zx.soft.weibo.api.dao;
 
 import java.util.List;
 
