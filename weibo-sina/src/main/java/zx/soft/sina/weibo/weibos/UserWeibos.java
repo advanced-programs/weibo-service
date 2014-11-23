@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.userweibos;
+package zx.soft.sina.weibo.weibos;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
