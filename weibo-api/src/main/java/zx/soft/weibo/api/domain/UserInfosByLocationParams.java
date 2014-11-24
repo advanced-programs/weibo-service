@@ -3,12 +3,13 @@ package zx.soft.weibo.api.domain;
 public class UserInfosByLocationParams {
 
 	private String tablename;
-	private int province;
-	private int city;
+	// 为了兼顾腾讯（string型）、新浪（int型），province和city为string型
+	private String province;
+	private String city;
 	private int start;
 	private int rows;
 
-	public UserInfosByLocationParams(String tablename, int province, int city, int start, int rows) {
+	public UserInfosByLocationParams(String tablename, String province, String city, int start, int rows) {
 		this.tablename = tablename;
 		this.province = province;
 		this.city = city;
@@ -24,19 +25,19 @@ public class UserInfosByLocationParams {
 		this.tablename = tablename;
 	}
 
-	public int getProvince() {
+	public String getProvince() {
 		return province;
 	}
 
-	public void setProvince(int province) {
+	public void setProvince(String province) {
 		this.province = province;
 	}
 
-	public int getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(int city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 

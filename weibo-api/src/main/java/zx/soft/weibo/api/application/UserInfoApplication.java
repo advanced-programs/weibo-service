@@ -33,7 +33,7 @@ public class UserInfoApplication extends Application {
 	/**
 	 * 新浪：获取某个地区的用户基本信息
 	 */
-	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, int province, int city, int start,
+	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, String province, String city, int start,
 			int rows) {
 		return weibosDaoImpl.getSinaUserInfosByLocation(tablename, province, city, start, rows);
 	}
@@ -41,8 +41,8 @@ public class UserInfoApplication extends Application {
 	/**
 	 * 腾讯：获取某个地区的用户基本信息
 	 */
-	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, int province, int city, int start,
-			int rows) {
+	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, String province, String city,
+			int start, int rows) {
 		return weibosDaoImpl.getTencentUserInfosByLocation(tablename, province, city, start, rows);
 	}
 

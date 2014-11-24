@@ -51,11 +51,11 @@ public class UserBaseInfoResource extends ServerResource {
 					.build();
 		}
 		if ("sina".equalsIgnoreCase(type)) {
-			return application.getSinaUserInfosByLocation("sina_user_baseinfo", Integer.parseInt(province),
-					Integer.parseInt(city), Integer.parseInt(start), Integer.parseInt(rows));
+			return application.getSinaUserInfosByLocation("sina_user_baseinfo", province, city,
+					Integer.parseInt(start), Integer.parseInt(rows));
 		} else if ("tencent".equalsIgnoreCase(type)) {
-			return application.getTencentUserInfosByLocation("tencent_user_baseinfo", Integer.parseInt(province),
-					Integer.parseInt(city), Integer.parseInt(start), Integer.parseInt(rows));
+			return application.getTencentUserInfosByLocation("tencent_user_baseinfo", province, city,
+					Integer.parseInt(start), Integer.parseInt(rows));
 		} else {
 			return new ErrorResponse.Builder(-1, "param `type` is error!").build();
 		}
