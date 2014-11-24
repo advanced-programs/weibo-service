@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 11 月 23 日 13:25
+-- 生成日期: 2014 年 11 月 24 日 11:25
 -- 服务器版本: 5.1.73
 -- PHP 版本: 5.3.3
 
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `tmp_sina_user_baseinfo` (
   `weihao` char(50) NOT NULL DEFAULT '0' COMMENT '微信号',
   `lasttime` int(10) NOT NULL COMMENT '记录时间',
   PRIMARY KEY (`bid`),
-  UNIQUE KEY `province_city` (`province`,`city`),
-  UNIQUE KEY `id` (`id`)
+  UNIQUE KEY `id` (`id`),
+  KEY `province_city` (`province`,`city`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='新浪用户基础信息表（有用信息）' AUTO_INCREMENT=1 ;
 
 --

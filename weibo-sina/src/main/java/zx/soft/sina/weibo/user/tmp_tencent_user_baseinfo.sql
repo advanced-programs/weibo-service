@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 11 月 23 日 13:25
+-- 生成日期: 2014 年 11 月 24 日 11:25
 -- 服务器版本: 5.1.73
 -- PHP 版本: 5.3.3
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `tmp_tencent_user_baseinfo` (
   `lasttime` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `province_city` (`province_code`,`city_code`)
+  KEY `province_city` (`province_code`,`city_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
