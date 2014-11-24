@@ -16,13 +16,13 @@ public class WeibosDaoImplDemo {
 		/**
 		 * 新浪：获取某个地区的用户基本信息
 		 */
-		List<SinaUserBaseInfo> sinaInfos = sinaWeibos.getSinaUserInfosByLocation("sina_user_baseinfo", 34, 1, 20);
+		List<SinaUserBaseInfo> sinaInfos = sinaWeibos.getSinaUserInfosByLocation("sina_user_baseinfo", 34, 1, 3, 2);
 		System.out.println(JsonUtils.toJson(sinaInfos));
 		/**
 		 * 腾讯：获取某个地区的用户基本信息
 		 */
 		List<TencentUserBaseInfo> tencentInfos = sinaWeibos.getTencentUserInfosByLocation("tencent_user_baseinfo", 34,
-				1, 20);
+				1, 2, 4);
 		System.out.println(JsonUtils.toJson(tencentInfos));
 	}
 

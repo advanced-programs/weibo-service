@@ -29,22 +29,24 @@ public class WeibosDaoImpl {
 	/**
 	 * 新浪：获取某个地区的用户基本信息
 	 */
-	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, int province, int city, int count) {
+	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, int province, int city, int start,
+			int rows) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
-			return weibosDao
-					.getSinaUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city, count));
+			return weibosDao.getSinaUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city, start,
+					rows));
 		}
 	}
 
 	/**
 	 * 腾讯：获取某个地区的用户基本信息
 	 */
-	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, int province, int city, int count) {
+	public List<TencentUserBaseInfo> getTencentUserInfosByLocation(String tablename, int province, int city, int start,
+			int rows) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
 			return weibosDao.getTencentUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city,
-					count));
+					start, rows));
 		}
 	}
 

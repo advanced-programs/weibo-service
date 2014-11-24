@@ -5,13 +5,13 @@
 	<!-- 新浪：获取某个地区的用户基本信息 -->
 	<select id="getSinaUserInfosByLocation" parameterType="UserInfosByLocationParams"
 		resultType="SinaUserBaseInfo">
-		SELECT * FROM ${tablename} LIMIT #{count};
+		SELECT * FROM ${tablename} LIMIT #{start},#{rows};
 	</select>
 	
 	<!-- 腾讯：获取某个地区的用户基本信息 -->
 	<select id="getTencentUserInfosByLocation" parameterType="UserInfosByLocationParams"
 		resultType="TencentUserBaseInfo">
-		SELECT * FROM ${tablename} LIMIT #{count};
+		SELECT * FROM ${tablename} LIMIT #{start},#{rows};
 	</select>
 
 </mapper>

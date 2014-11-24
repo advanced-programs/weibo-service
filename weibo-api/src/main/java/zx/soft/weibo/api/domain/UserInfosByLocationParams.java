@@ -5,13 +5,15 @@ public class UserInfosByLocationParams {
 	private String tablename;
 	private int province;
 	private int city;
-	private int count;
+	private int start;
+	private int rows;
 
-	public UserInfosByLocationParams(String tablename, int province, int city, int count) {
+	public UserInfosByLocationParams(String tablename, int province, int city, int start, int rows) {
 		this.tablename = tablename;
 		this.province = province;
 		this.city = city;
-		this.count = count;
+		this.start = start;
+		this.rows = rows;
 	}
 
 	public String getTablename() {
@@ -38,12 +40,21 @@ public class UserInfosByLocationParams {
 		this.city = city;
 	}
 
-	public int getCount() {
-		return count;
+	public int getStart() {
+		return start;
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public void setStart(int start) {
+		// 因为mysql中limit start,rows，是从start+1开始计算的
+		this.start = start - 1;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
 }
