@@ -1,7 +1,7 @@
 package zx.soft.weibo.api.domain;
 
-import java.util.HashMap;
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * 用户发布的微博，按时间段统计结果
@@ -12,9 +12,9 @@ import java.util.Random;
 public class UserWeibosGroup {
 
 	// 增量结果
-	private HashMap<String, Integer> increment = new HashMap<>();
+	private TreeMap<String, Integer> increment = new TreeMap<>();
 	// 全量结果
-	private HashMap<String, Integer> allcount = new HashMap<>();
+	private TreeMap<String, Integer> allcount = new TreeMap<>();
 
 	public UserWeibosGroup instance() {
 		Random random = new Random();
@@ -27,11 +27,11 @@ public class UserWeibosGroup {
 		return this;
 	}
 
-	public HashMap<String, Integer> getIncrement() {
+	public TreeMap<String, Integer> getIncrement() {
 		return increment;
 	}
 
-	public void setIncrement(HashMap<String, Integer> increment) {
+	public void setIncrement(TreeMap<String, Integer> increment) {
 		this.increment = increment;
 	}
 
@@ -39,11 +39,11 @@ public class UserWeibosGroup {
 		this.increment.put(key, value);
 	}
 
-	public HashMap<String, Integer> getAllcount() {
+	public TreeMap<String, Integer> getAllcount() {
 		return allcount;
 	}
 
-	public void setAllcount(HashMap<String, Integer> allcount) {
+	public void setAllcount(TreeMap<String, Integer> allcount) {
 		this.allcount = allcount;
 	}
 
