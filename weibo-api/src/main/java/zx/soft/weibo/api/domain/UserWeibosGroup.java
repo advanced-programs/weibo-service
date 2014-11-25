@@ -1,5 +1,8 @@
 package zx.soft.weibo.api.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -12,43 +15,50 @@ import java.util.TreeMap;
 public class UserWeibosGroup {
 
 	// 增量结果
-	private TreeMap<String, Integer> increment = new TreeMap<>();
+	private List<List<Object>> increment;
 	// 全量结果
-	private TreeMap<String, Integer> allcount = new TreeMap<>();
+	private List<List<Object>> allcount;
 
 	public UserWeibosGroup instance() {
+		TreeMap<String, Integer> incrementMap = new TreeMap<>();
+		TreeMap<String, Integer> allcountMap = new TreeMap<>();
 		Random random = new Random();
 		for (int i = 1; i <= 9; i++) {
-			this.increment.put("2014-0" + i, random.nextInt(200));
-			this.allcount.put("2014-0" + i, random.nextInt(200));
+			incrementMap.put("2014-0" + i, random.nextInt(200));
+			allcountMap.put("2014-0" + i, random.nextInt(200));
 		}
-		this.increment.put("2014-10", random.nextInt(100));
-		this.allcount.put("2014-10", random.nextInt(100));
+		incrementMap.put("2014-10", random.nextInt(100));
+		allcountMap.put("2014-10", random.nextInt(100));
+		this.setIncrement(incrementMap);
+		this.setAllcount(allcountMap);
 		return this;
 	}
 
-	public TreeMap<String, Integer> getIncrement() {
+	public List<List<Object>> getIncrement() {
 		return increment;
 	}
 
 	public void setIncrement(TreeMap<String, Integer> increment) {
-		this.increment = increment;
+		this.increment = trans(increment);
 	}
 
-	public void setIncrement(String key, int value) {
-		this.increment.put(key, value);
-	}
-
-	public TreeMap<String, Integer> getAllcount() {
+	public List<List<Object>> getAllcount() {
 		return allcount;
 	}
 
 	public void setAllcount(TreeMap<String, Integer> allcount) {
-		this.allcount = allcount;
+		this.allcount = trans(allcount);
 	}
 
-	public void setAllcount(String key, int value) {
-		this.allcount.put(key, value);
+	private List<List<Object>> trans(TreeMap<String, Integer> map) {
+		List<List<Object>> result = new ArrayList<>();
+		for (Entry<String, Integer> tmp : map.entrySet()) {
+			List<Object> list = new ArrayList<>();
+			list.add(tmp.getKey());
+			list.add(tmp.getValue());
+			result.add(list);
+		}
+		return result;
 	}
 
 }
