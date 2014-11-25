@@ -24,11 +24,11 @@ public class UserWeibosGroup {
 		TreeMap<String, Integer> allcountMap = new TreeMap<>();
 		Random random = new Random();
 		for (int i = 1; i <= 9; i++) {
-			incrementMap.put("2014-0" + i, random.nextInt(200));
-			allcountMap.put("2014-0" + i, random.nextInt(200));
+			incrementMap.put("20140" + i, random.nextInt(200));
+			allcountMap.put("20140" + i, random.nextInt(200));
 		}
-		incrementMap.put("2014-10", random.nextInt(100));
-		allcountMap.put("2014-10", random.nextInt(100));
+		incrementMap.put("201410", random.nextInt(100));
+		allcountMap.put("201410", random.nextInt(100));
 		this.setIncrement(incrementMap);
 		this.setAllcount(allcountMap);
 		return this;
