@@ -2,16 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zx.soft.weibo.api.dao.WeibosDao">
 
+	<!-- 新浪：获取某个地区的用户总量 -->
+	<select id="getSinaUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
+	    SELECT COUNT(*) FROM ${tablename} WHERE `province` = #{province} AND `city` = #{city};
+	</select>
+
 	<!-- 新浪：获取某个地区的用户基本信息 -->
 	<select id="getSinaUserInfosByLocation" parameterType="UserInfosByLocationParams"
 		resultType="SinaUserBaseInfo">
-		SELECT * FROM ${tablename} WHERE `province` = #{province} AND `city` = #{city} LIMIT #{start},#{rows};
+		SELECT * FROM ${tablename} WHERE `province` = #{province}
+		AND `city` = #{city} LIMIT #{start},#{rows};
 	</select>
 	
+	<!-- 腾讯：获取某个地区的用户总量 -->
+	<select id="getTencentUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
+	    SELECT COUNT(*) FROM ${tablename} WHERE `province_code` = #{province} AND `city_code` = #{city};
+	</select>
+
 	<!-- 腾讯：获取某个地区的用户基本信息 -->
 	<select id="getTencentUserInfosByLocation" parameterType="UserInfosByLocationParams"
 		resultType="TencentUserBaseInfo">
-		SELECT * FROM ${tablename} WHERE `province_code` = #{province} AND `city_code` = #{city} LIMIT #{start},#{rows};
+		SELECT * FROM ${tablename} WHERE `province_code` =
+		#{province} AND `city_code` = #{city} LIMIT #{start},#{rows};
 	</select>
 
 </mapper>

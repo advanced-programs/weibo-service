@@ -27,6 +27,17 @@ public class WeibosDaoImpl {
 	}
 
 	/**
+	 * 新浪：获取某个地区的用户总量
+	 */
+	public int getSinaUsersCountByLocation(String tablename, String province, String city) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
+			return weibosDao
+					.getSinaUsersCountByLocation(new UserInfosByLocationParams(tablename, province, city, 1, 1));
+		}
+	}
+
+	/**
 	 * 新浪：获取某个地区的用户基本信息
 	 */
 	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, String province, String city, int start,
@@ -35,6 +46,17 @@ public class WeibosDaoImpl {
 			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
 			return weibosDao.getSinaUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city, start,
 					rows));
+		}
+	}
+
+	/**
+	 * 腾讯：获取某个地区的用户总量
+	 */
+	public int getTencentUsersCountByLocation(String tablename, String province, String city) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
+			return weibosDao.getTencentUsersCountByLocation(new UserInfosByLocationParams(tablename, province, city, 1,
+					1));
 		}
 	}
 

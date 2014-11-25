@@ -31,11 +31,25 @@ public class UserInfoApplication extends Application {
 	}
 
 	/**
+	 * 新浪：获取某个地区的用户总量
+	 */
+	public int getSinaUsersCountByLocation(String tablename, String province, String city) {
+		return weibosDaoImpl.getSinaUsersCountByLocation(tablename, province, city);
+	}
+
+	/**
 	 * 新浪：获取某个地区的用户基本信息
 	 */
 	public List<SinaUserBaseInfo> getSinaUserInfosByLocation(String tablename, String province, String city, int start,
 			int rows) {
 		return weibosDaoImpl.getSinaUserInfosByLocation(tablename, province, city, start, rows);
+	}
+
+	/**
+	 * 腾讯：获取某个地区的用户总量
+	 */
+	public int getTencentUsersCountByLocation(String tablename, String province, String city) {
+		return weibosDaoImpl.getTencentUsersCountByLocation(tablename, province, city);
 	}
 
 	/**

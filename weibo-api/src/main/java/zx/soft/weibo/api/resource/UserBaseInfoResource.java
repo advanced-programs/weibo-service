@@ -12,6 +12,8 @@ import zx.soft.utils.codec.URLCodecUtils;
 import zx.soft.weibo.api.application.UserInfoApplication;
 import zx.soft.weibo.api.common.RestletRequestParams;
 import zx.soft.weibo.api.domain.ErrorResponse;
+import zx.soft.weibo.api.domain.SinaUserInfoResult;
+import zx.soft.weibo.api.domain.TencentUserInfoResult;
 
 public class UserBaseInfoResource extends ServerResource {
 
@@ -51,11 +53,14 @@ public class UserBaseInfoResource extends ServerResource {
 					.build();
 		}
 		if ("sina".equalsIgnoreCase(type)) {
-			return application.getSinaUserInfosByLocation("sina_user_baseinfo", province, city,
-					Integer.parseInt(start), Integer.parseInt(rows));
+			return new SinaUserInfoResult(
+					application.getSinaUsersCountByLocation("sina_user_baseinfo", province, city),
+					application.getSinaUserInfosByLocation("sina_user_baseinfo", province, city,
+							Integer.parseInt(start), Integer.parseInt(rows)));
 		} else if ("tencent".equalsIgnoreCase(type)) {
-			return application.getTencentUserInfosByLocation("tencent_user_baseinfo", province, city,
-					Integer.parseInt(start), Integer.parseInt(rows));
+			return new TencentUserInfoResult(application.getTencentUsersCountByLocation("tencent_user_baseinfo",
+					province, city), application.getTencentUserInfosByLocation("tencent_user_baseinfo", province, city,
+					Integer.parseInt(start), Integer.parseInt(rows)));
 		} else {
 			return new ErrorResponse.Builder(-1, "param `type` is error!").build();
 		}
