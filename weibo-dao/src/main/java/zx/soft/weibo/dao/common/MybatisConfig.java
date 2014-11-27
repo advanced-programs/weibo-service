@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.common;
+package zx.soft.weibo.dao.common;
 
 import java.io.IOException;
 import java.io.InputStream;

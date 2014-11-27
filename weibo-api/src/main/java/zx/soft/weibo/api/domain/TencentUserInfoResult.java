@@ -2,6 +2,8 @@ package zx.soft.weibo.api.domain;
 
 import java.util.List;
 
+import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
+
 public class TencentUserInfoResult {
 
 	private int numFound;

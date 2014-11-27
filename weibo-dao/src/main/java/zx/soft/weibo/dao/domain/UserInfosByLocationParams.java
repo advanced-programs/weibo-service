@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.domain;
+package zx.soft.weibo.dao.domain;
 
 public class UserInfosByLocationParams {
 

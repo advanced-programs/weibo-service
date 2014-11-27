@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.dao;
+package zx.soft.weibo.dao.weibos;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.weibo.api.common.MybatisConfig;
-import zx.soft.weibo.api.domain.SinaUserBaseInfo;
-import zx.soft.weibo.api.domain.TencentUserBaseInfo;
-import zx.soft.weibo.api.domain.UserInfosByLocationParams;
+import zx.soft.weibo.dao.common.MybatisConfig;
+import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
+import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
+import zx.soft.weibo.dao.domain.UserInfosByLocationParams;
 
 public class WeibosDaoImpl {
 

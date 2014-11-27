@@ -1,12 +1,12 @@
-package zx.soft.weibo.api.demo;
+package zx.soft.weibo.dao.demo;
 
 import java.util.List;
 
 import zx.soft.utils.json.JsonUtils;
-import zx.soft.weibo.api.common.MybatisConfig;
-import zx.soft.weibo.api.dao.WeibosDaoImpl;
-import zx.soft.weibo.api.domain.SinaUserBaseInfo;
-import zx.soft.weibo.api.domain.TencentUserBaseInfo;
+import zx.soft.weibo.dao.common.MybatisConfig;
+import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
+import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
+import zx.soft.weibo.dao.weibos.WeibosDaoImpl;
 
 public class WeibosDaoImplDemo {
 

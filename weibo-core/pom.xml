@@ -8,28 +8,15 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>weibo-api</artifactId>
+	<artifactId>weibo-core</artifactId>
 	<version>1.1.0</version>
-	<name>Weibo API</name>
+	<name>Weibo Core</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>weibo-dao</artifactId>
+			<artifactId>weibo-sina</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<!-- Restlet组件 -->
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.simple</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.jackson</artifactId>
 		</dependency>
 		<!-- 测试包 -->
 		<dependency>

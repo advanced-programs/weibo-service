@@ -6,13 +6,13 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import zx.soft.weibo.api.common.MybatisConfig;
-import zx.soft.weibo.api.dao.WeibosDaoImpl;
-import zx.soft.weibo.api.domain.SinaUserBaseInfo;
-import zx.soft.weibo.api.domain.TencentUserBaseInfo;
 import zx.soft.weibo.api.domain.UserWeibosGroup;
 import zx.soft.weibo.api.resource.UserBaseInfoResource;
 import zx.soft.weibo.api.resource.UserWeibosInfoResource;
+import zx.soft.weibo.dao.common.MybatisConfig;
+import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
+import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
+import zx.soft.weibo.dao.weibos.WeibosDaoImpl;
 
 public class UserInfoApplication extends Application {
 

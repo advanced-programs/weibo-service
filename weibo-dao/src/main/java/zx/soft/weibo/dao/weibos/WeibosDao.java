@@ -1,10 +1,10 @@
-package zx.soft.weibo.api.dao;
+package zx.soft.weibo.dao.weibos;
 
 import java.util.List;
 
-import zx.soft.weibo.api.domain.SinaUserBaseInfo;
-import zx.soft.weibo.api.domain.TencentUserBaseInfo;
-import zx.soft.weibo.api.domain.UserInfosByLocationParams;
+import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
+import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
+import zx.soft.weibo.dao.domain.UserInfosByLocationParams;
 
 /**
  * 持久化到MySQL的接口

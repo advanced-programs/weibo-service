@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.domain;
+package zx.soft.weibo.dao.domain;
 
 /**
  * 新浪用户基础信息数据模型

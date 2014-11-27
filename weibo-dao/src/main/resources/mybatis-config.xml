@@ -9,10 +9,10 @@
 	</properties>
 	<typeAliases>
 		<!-- 微博数据 -->
-		<typeAlias alias="SinaUserBaseInfo" type="zx.soft.weibo.api.domain.SinaUserBaseInfo" />
-		<typeAlias alias="TencentUserBaseInfo" type="zx.soft.weibo.api.domain.TencentUserBaseInfo" />
+		<typeAlias alias="SinaUserBaseInfo" type="zx.soft.weibo.dao.domain.SinaUserBaseInfo" />
+		<typeAlias alias="TencentUserBaseInfo" type="zx.soft.weibo.dao.domain.TencentUserBaseInfo" />
 		<typeAlias alias="UserInfosByLocationParams"
-			type="zx.soft.weibo.api.domain.UserInfosByLocationParams" />
+			type="zx.soft.weibo.dao.domain.UserInfosByLocationParams" />
 	</typeAliases>
 	<environments default="weibos">
 		<environment id="weibos">

@@ -8,28 +8,51 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>weibo-api</artifactId>
+	<artifactId>weibo-dao</artifactId>
 	<version>1.1.0</version>
-	<name>Weibo API</name>
+	<name>Weibo Dao</name>
 
 	<dependencies>
+		<!-- 内部包 -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>weibo-dao</artifactId>
-			<version>${project.version}</version>
+			<groupId>zx.soft</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>1.0.0</version>
 		</dependency>
-		<!-- Restlet组件 -->
+		<!-- Mybatis包 -->
 		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.simple</artifactId>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.jackson</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- Json包 -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+		<!-- 日志组件 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<!-- 测试包 -->
 		<dependency>
@@ -69,43 +92,6 @@
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<excludes>
-						<exclude>data_db.properties</exclude>
-						<exclude>logback.xml</exclude>
-						<exclude>web-server.properties</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/distribution.xml</descriptor>
-					</descriptors>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 
