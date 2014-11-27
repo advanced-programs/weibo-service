@@ -13,6 +13,11 @@
 	<name>Weibo Dao</name>
 
 	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>weibo-sina</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- 内部包 -->
 		<dependency>
 			<groupId>zx.soft</groupId>

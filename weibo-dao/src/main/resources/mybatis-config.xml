@@ -10,7 +10,8 @@
 	<typeAliases>
 		<!-- 微博数据 -->
 		<typeAlias alias="SinaUserBaseInfo" type="zx.soft.weibo.dao.domain.SinaUserBaseInfo" />
-		<typeAlias alias="TencentUserBaseInfo" type="zx.soft.weibo.dao.domain.TencentUserBaseInfo" />
+		<typeAlias alias="TencentUserBaseInfo"
+			type="zx.soft.weibo.dao.domain.TencentUserBaseInfo" />
 		<typeAlias alias="UserInfosByLocationParams"
 			type="zx.soft.weibo.dao.domain.UserInfosByLocationParams" />
 	</typeAliases>
@@ -30,6 +31,7 @@
 		</environment>
 	</environments>
 	<mappers>
+		<mapper resource="WeibosDaoMapper.xml" />
 		<mapper resource="SinaWeibosDaoMapper.xml" />
 	</mappers>
 </configuration>

@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zx.soft.weibo.dao.weibos.WeibosDao">
+<mapper namespace="cc.pp.sina.dao.weibos.SinaWeibosDao">
 
-	<!-- 新浪：获取某个地区的用户总量 -->
-	<select id="getSinaUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
-	    SELECT COUNT(*) FROM ${tablename} WHERE `province` = #{province} AND `city` = #{city};
+	<!-- 获取数据表中的最大bid -->
+	<select id="getMaxBid" parameterType="WeibosSelectParams" resultType="int">
+		SELECT MAX(`id`) FROM ${tablename};
 	</select>
 
-	<!-- 新浪：获取某个地区的用户基本信息 -->
-	<select id="getSinaUserInfosByLocation" parameterType="UserInfosByLocationParams"
-		resultType="SinaUserBaseInfo">
-		SELECT * FROM ${tablename} WHERE `province` = #{province}
-		AND `city` = #{city} LIMIT #{start},#{rows};
+	<!-- 插入单条微博数据 -->
+	<insert id="insertWeiboInfo" parameterType="WeiboInsertParams" useGeneratedKeys="true"
+		keyProperty="bid" flushCache="true" statementType="PREPARED">
+		INSERT INTO ${tablename} (`wid`,`username`,`repostscount`,`commentscount`,`attitudescount`,`text`,`createat`,`owid`,
+		`ousername`,`favorited`,`geo`,`latitude`,`longitude`,`originalpic`,`source`,`visible`,`mlevel`,`lasttime`) VALUES 
+		(#{wid},#{username},#{repostscount},#{commentscount},#{attitudescount},#{text},#{createat},#{owid},#{ousername},
+		#{favorited},#{geo},#{latitude},#{longitude},#{originalpic},#{source},#{visible},#{mlevel},#{lasttime});
+	</insert>
+
+	<!-- 批量获取微博数据 -->
+	<select id="getWeibosInfo" parameterType="WeibosSelectParams" resultType="WeiboInfo">
+	    SELECT `wid`,`username`,`repostscount`,`commentscount`,`attitudescount`,`text`,`createat`,`owid`,`ousername`,`favorited`,
+	    `geo`,`latitude`,`longitude`,`originalpic`,`source`,`visible`,`mlevel`,`lasttime` FROM ${tablename} 
+	    WHERE `id` BETWEEN #{low} AND #{high};
 	</select>
 	
-	<!-- 腾讯：获取某个地区的用户总量 -->
-	<select id="getTencentUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
-	    SELECT COUNT(*) FROM ${tablename} WHERE `province_code` = #{province} AND `city_code` = #{city};
+	<!-- 批量获取微博数据，旧数据结构 -->
+	<select id="getWeibosInfoOld" parameterType="WeibosSelectParams" resultType="WeiboInfoOld">
+       SELECT `wid`,`username`,`repostscount`,`commentscount`,`text`,`createat`,`owid`,`ousername`,`favorited`,`geo`,`latitude`,
+       `longitude`,`originalpic`,`source`,`visible`,`lasttime` FROM ${tablename} WHERE `id` BETWEEN #{low} AND #{high};
 	</select>
 
-	<!-- 腾讯：获取某个地区的用户基本信息 -->
-	<select id="getTencentUserInfosByLocation" parameterType="UserInfosByLocationParams"
-		resultType="TencentUserBaseInfo">
-		SELECT * FROM ${tablename} WHERE `province_code` =
-		#{province} AND `city_code` = #{city} LIMIT #{start},#{rows};
+	<!-- 获取单条微博数据 -->
+	<select id="getWeiboInfo" parameterType="WeiboSelectParams" resultType="WeiboInfo">
+	    SELECT `wid`,`username`,`repostscount`,`commentscount`,`attitudescount`,`text`,`createat`,`owid`,`ousername`,`favorited`,
+	    `geo`,`latitude`,`longitude`,`originalpic`,`source`,`visible`,`mlevel`,`lasttime` FROM ${tablename} WHERE `wid` = #{wid};
+	</select>
+
+	<!-- 删除单条微博数据 -->
+	<delete id="deleteWeiboInfo" parameterType="WeiboSelectParams">
+	    DELETE FROM ${tablename} WHERE `wid` = #{wid};
+	</delete>
+
+	<!-- 插入微博数据表名 -->
+	<insert id="insertTablenames" parameterType="TablenameInsertParams"
+		useGeneratedKeys="true" keyProperty="id" flushCache="true"
+		statementType="PREPARED">
+		INSERT INTO ${tablename} (`name`) VALUES (#{name});
+	</insert>
+
+	<!-- 读取微博数据表名的数据表 -->
+	<select id="getTablenames" parameterType="TablenameInsertParams" resultType="string" >
+	    SELECT `name` FROM ${tablename};
 	</select>
 
 </mapper>
