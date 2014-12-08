@@ -165,7 +165,7 @@ public class SinaDomain implements Map<String, Object>, Iterable<Map.Entry<Strin
 
 	@Override
 	public String toString() {
-		return "SolrDocument" + _fields;
+		return "SinaDomain" + _fields;
 	}
 
 	/**

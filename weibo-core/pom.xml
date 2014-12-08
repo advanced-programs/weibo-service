@@ -18,6 +18,11 @@
 			<artifactId>weibo-sina</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>weibo-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- 测试包 -->
 		<dependency>
 			<groupId>junit</groupId>

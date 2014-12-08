@@ -11,6 +11,8 @@ import zx.soft.weibo.dao.common.MybatisConfig;
 import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
 import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
 import zx.soft.weibo.dao.domain.UserInfosByLocationParams;
+import zx.soft.weibo.dao.domain.sina.SimpleWeibosInfo;
+import zx.soft.weibo.dao.domain.sina.WeiboDayCount;
 
 public class WeibosDaoImpl {
 
@@ -69,6 +71,46 @@ public class WeibosDaoImpl {
 			WeibosDao weibosDao = sqlSession.getMapper(WeibosDao.class);
 			return weibosDao.getTencentUserInfosByLocation(new UserInfosByLocationParams(tablename, province, city,
 					start, rows));
+		}
+	}
+
+	/**
+	 * 插入新浪用户微博数据
+	 */
+	public void insertSinaUserWeibos(SimpleWeibosInfo simpleWeibosInfo) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
+			simpleWeibosDao.insertSinaUserWeibos(simpleWeibosInfo);
+		}
+	}
+
+	/**
+	 * 获取某个用户当前微博总数
+	 */
+	public int selectSinaUserWeiboCount(String uid) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
+			return simpleWeibosDao.selectSinaUserWeiboCount(uid);
+		}
+	}
+
+	/**
+	 * 按天根据用户名获取每天分组统计结果
+	 */
+	public List<WeiboDayCount> selectSinaUserWeibosGroupByDay(String uid) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
+			return simpleWeibosDao.selectSinaUserWeibosGroupByDay(uid);
+		}
+	}
+
+	/**
+	 * 按天根据用户名获取每月分组统计结果
+	 */
+	public List<WeiboDayCount> selectSinaUserWeibosGroupByMonth(String uid) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
+			return simpleWeibosDao.selectSinaUserWeibosGroupByMonth(uid);
 		}
 	}
 

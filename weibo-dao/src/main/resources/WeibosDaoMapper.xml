@@ -3,8 +3,10 @@
 <mapper namespace="zx.soft.weibo.dao.weibos.WeibosDao">
 
 	<!-- 新浪：获取某个地区的用户总量 -->
-	<select id="getSinaUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
-	    SELECT COUNT(*) FROM ${tablename} WHERE `province` = #{province} AND `city` = #{city};
+	<select id="getSinaUsersCountByLocation" parameterType="UserInfosByLocationParams"
+		resultType="int">
+		SELECT COUNT(*) FROM ${tablename} WHERE `province` = #{province} AND `city`
+		= #{city};
 	</select>
 
 	<!-- 新浪：获取某个地区的用户基本信息 -->
@@ -13,10 +15,12 @@
 		SELECT * FROM ${tablename} WHERE `province` = #{province}
 		AND `city` = #{city} LIMIT #{start},#{rows};
 	</select>
-	
+
 	<!-- 腾讯：获取某个地区的用户总量 -->
-	<select id="getTencentUsersCountByLocation" parameterType="UserInfosByLocationParams" resultType="int">
-	    SELECT COUNT(*) FROM ${tablename} WHERE `province_code` = #{province} AND `city_code` = #{city};
+	<select id="getTencentUsersCountByLocation" parameterType="UserInfosByLocationParams"
+		resultType="int">
+		SELECT COUNT(*) FROM ${tablename} WHERE `province_code` = #{province} AND
+		`city_code` = #{city};
 	</select>
 
 	<!-- 腾讯：获取某个地区的用户基本信息 -->
@@ -24,6 +28,29 @@
 		resultType="TencentUserBaseInfo">
 		SELECT * FROM ${tablename} WHERE `province_code` =
 		#{province} AND `city_code` = #{city} LIMIT #{start},#{rows};
+	</select>
+
+	<!-- 插入新浪用户微博数据 -->
+	<insert id="insertSinaUserWeibos" parameterType="SimpleWeibosInfo">
+		INSERT INTO
+		`sina_user_weibos`
+		(`wid`,`uid`,`nickname`,`statusescount`,`year`,`yearmonth`,`yearmonthday`,`weibo`,`lasttime`)
+		VALUES
+		(#{wid},#{uid},#{nickname},#{statusesCount},#{year},#{yearMonth},#{yearMonthDay},#{weibo},NOW());
+	</insert>
+
+	<!-- 按天根据用户名获取每天分组统计结果 -->
+	<select id="selectSinaUserWeibosGroupByDay" parameterType="string"
+		resultType="WeiboDayCount">
+		SELECT yearmonthday AS day,COUNT(*) AS count FROM `sina_user_weibos` WHERE
+		uid = #{uid} GROUP BY yearmonthday ORDER BY yearmonthday DESC;
+	</select>
+	
+	<!-- 按天根据用户名获取每月分组统计结果 -->
+	<select id="selectSinaUserWeibosGroupByMonth" parameterType="string"
+		resultType="WeiboDayCount">
+		SELECT yearmonth AS day,COUNT(*) AS count FROM `sina_user_weibos` WHERE
+		uid = #{uid} GROUP BY yearmonth ORDER BY yearmonth DESC;
 	</select>
 
 </mapper>

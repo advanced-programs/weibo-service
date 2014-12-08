@@ -16,7 +16,7 @@ import zx.soft.weibo.api.application.UserInfoApplication;
  *    http://localhost:8100/weibos/{type}/users/{province}/{city}?start=xxx&rows=xxx
  * 3、按时间段统计用户的微博量
  *    增量和全量统计：
- *    http://localhost:8100/weibos/{type}/users/weibos/{uid}/group    
+ *    http://localhost:8100/weibos/{type}/users/weibos/{uid}/group/{interval}    
  *    
  * @author wgybzb
  *

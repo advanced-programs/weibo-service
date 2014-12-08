@@ -18,30 +18,33 @@ public class UserWeibosInfoResource extends ServerResource {
 
 	private String type = "";
 	private String uid = "";
+	private String interval = "";
 
 	@Override
 	public void doInit() {
 		application = (UserInfoApplication) getApplication();
 		type = (String) this.getRequest().getAttributes().get("type");
 		uid = (String) this.getRequest().getAttributes().get("uid");
+		interval = (String) this.getRequest().getAttributes().get("interval");
 		logger.info("Request Url: " + URLCodecUtils.decoder(getReference().toString(), "utf-8") + ".");
 	}
 
 	@Get("json")
 	public Object retriveUserInfo() {
-		if (type == null || type.length() == 0 || uid == null || uid.length() == 0) {
-			logger.error("Params `type` or `uid` is null.");
+		if (type == null || type.length() == 0 || uid == null || uid.length() == 0 || interval == null
+				|| interval.length() == 0) {
+			logger.error("Params `type`,`uid` or `interval` is null.");
 			return new ErrorResponse.Builder(-1, "params error!").build();
 		}
 		if ("sina".equalsIgnoreCase(type)) {
 			if (JavaPattern.isAllNum(uid)) {
-				return application.analysisSinaUserWeibosByInterval("sina_user_weibos", uid);
+				return application.analysisSinaUserWeibosByInterval(uid, interval);
 			} else {
 				logger.error("Params `type` or `uid` is null.");
 				return new ErrorResponse.Builder(-1, "param `uid` is error!").build();
 			}
 		} else if ("tencent".equalsIgnoreCase(type)) {
-			return application.analysisTencentUserWeibosByInterval("tencent_user_weibos", uid);
+			return application.analysisTencentUserWeibosByInterval(uid, interval);
 		} else {
 			return new ErrorResponse.Builder(-1, "param `type` is error!").build();
 		}

@@ -18,6 +18,12 @@
 			<artifactId>weibo-dao</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- 内部包 -->
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		<!-- Restlet组件 -->
 		<dependency>
 			<groupId>org.restlet.jse</groupId>
@@ -30,6 +36,11 @@
 		<dependency>
 			<groupId>org.restlet.jse</groupId>
 			<artifactId>org.restlet.ext.jackson</artifactId>
+		</dependency>
+		<!-- Json包 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
 		</dependency>
 		<!-- 测试包 -->
 		<dependency>
