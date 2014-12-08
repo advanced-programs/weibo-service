@@ -1,9 +1,9 @@
-package zx.soft.weibo.core.demo;
+package zx.soft.weibo.sina.example;
 
-import zx.soft.sina.weibo.api.SinaWeiboAPI;
-import zx.soft.sina.weibo.domain.SinaDomain;
 import zx.soft.utils.http.HttpClientDaoImpl;
 import zx.soft.utils.json.JsonUtils;
+import zx.soft.weibo.sina.api.SinaWeiboAPI;
+import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 获取某个用户最新发表的微博列表

@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.common;
+package zx.soft.weibo.sina.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;

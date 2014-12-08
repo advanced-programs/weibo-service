@@ -1,9 +1,9 @@
-package zx.soft.weibo.core.demo;
+package zx.soft.weibo.sina.example;
 
-import zx.soft.sina.weibo.api.SinaWeiboAPI;
-import zx.soft.sina.weibo.domain.SinaDomain;
 import zx.soft.utils.http.HttpClientDaoImpl;
 import zx.soft.utils.json.JsonUtils;
+import zx.soft.weibo.sina.api.SinaWeiboAPI;
+import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 返回最新的200条公共微博，返回结果非完全实时

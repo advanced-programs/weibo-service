@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.driver;
+package zx.soft.weibo.sina.driver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

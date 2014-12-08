@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.common;
+package zx.soft.weibo.sina.common;
 
 /**
  * Title: 微博ID转换工具

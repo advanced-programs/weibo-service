@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import zx.soft.sina.weibo.domain.Status;
 import zx.soft.weibo.dao.common.MybatisConfig;
 import zx.soft.weibo.dao.domain.sina.TablenameInsertParams;
 import zx.soft.weibo.dao.domain.sina.WeiboInfo;
@@ -13,6 +12,7 @@ import zx.soft.weibo.dao.domain.sina.WeiboInfoOld;
 import zx.soft.weibo.dao.domain.sina.WeiboInsertParams;
 import zx.soft.weibo.dao.domain.sina.WeiboSelectParams;
 import zx.soft.weibo.dao.domain.sina.WeibosSelectParams;
+import zx.soft.weibo.sina.domain.Status;
 
 /**
  * 新浪用户微博数据

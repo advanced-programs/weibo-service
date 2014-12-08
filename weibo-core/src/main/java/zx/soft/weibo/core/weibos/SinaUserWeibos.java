@@ -1,12 +1,12 @@
-package zx.soft.sina.weibo.weibos;
+package zx.soft.weibo.core.weibos;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.sina.weibo.api.SinaWeiboAPI;
-import zx.soft.sina.weibo.domain.SinaDomain;
 import zx.soft.utils.http.ClientDao;
 import zx.soft.utils.http.HttpClientDaoImpl;
+import zx.soft.weibo.sina.api.SinaWeiboAPI;
+import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 新浪用户微博列表类
@@ -14,13 +14,13 @@ import zx.soft.utils.http.HttpClientDaoImpl;
  * @author wgybzb
  *
  */
-public class UserWeibos {
+public class SinaUserWeibos {
 
-	private static Logger logger = LoggerFactory.getLogger(UserWeibos.class);
+	private static Logger logger = LoggerFactory.getLogger(SinaUserWeibos.class);
 
 	private final SinaWeiboAPI api;
 
-	public UserWeibos(ClientDao clientDao) {
+	public SinaUserWeibos(ClientDao clientDao) {
 		api = new SinaWeiboAPI(clientDao);
 	}
 
@@ -28,17 +28,17 @@ public class UserWeibos {
 	 * 测试函数
 	 */
 	public static void main(String[] args) {
-		UserWeibos userWeibos = new UserWeibos(new HttpClientDaoImpl());
-		userWeibos.userWeibosToDB("1732243641");
+		SinaUserWeibos userWeibos = new SinaUserWeibos(new HttpClientDaoImpl());
+		userWeibos.userWeibosToDB("1649155730");
 	}
 
 	/**
 	 * 获取用户的全部微博数据
 	 */
 	public void userWeibosToDB(String uid) {
-		logger.info("Retriving user:{}'s weibos", uid);
 		int page = 1;
 		SinaDomain weibos;
+		logger.info("Retriving user:{}'s weibos", uid);
 		do {
 			weibos = api.statusesUserTimelineByUid(uid, "0", "0", 100, page, 0, 0, 0);
 			logger.info("User:{}'s weibos at page:{}.", uid, page);

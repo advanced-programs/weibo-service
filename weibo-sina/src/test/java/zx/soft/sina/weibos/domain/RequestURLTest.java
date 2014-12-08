@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import zx.soft.sina.weibo.domain.RequestURL;
+import zx.soft.weibo.sina.domain.RequestURL;
 
 public class RequestURLTest {
 

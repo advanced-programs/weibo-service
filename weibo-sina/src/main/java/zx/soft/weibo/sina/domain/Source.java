@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.domain;
+package zx.soft.weibo.sina.domain;
 
 public class Source {
 

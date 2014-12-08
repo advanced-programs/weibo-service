@@ -1,9 +1,9 @@
-package zx.soft.sina.weibo.example;
+package zx.soft.weibo.sina.example;
 
-import zx.soft.sina.weibo.api.SinaWeiboAPI;
-import zx.soft.sina.weibo.domain.SinaDomain;
 import zx.soft.utils.http.HttpClientDaoImpl;
 import zx.soft.utils.json.JsonUtils;
+import zx.soft.weibo.sina.api.SinaWeiboAPI;
+import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 根据微博ID返回某条微博的评论列表

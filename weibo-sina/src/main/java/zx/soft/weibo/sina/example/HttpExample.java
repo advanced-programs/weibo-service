@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.example;
+package zx.soft.weibo.sina.example;
 
 import zx.soft.utils.http.HttpClientDaoImpl;
 

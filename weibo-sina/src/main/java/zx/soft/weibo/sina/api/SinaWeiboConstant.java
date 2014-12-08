@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.api;
+package zx.soft.weibo.sina.api;
 
 /**
  * 新浪微博API相关常量

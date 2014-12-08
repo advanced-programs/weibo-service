@@ -1,4 +1,4 @@
-package zx.soft.sina.weibo.domain;
+package zx.soft.weibo.sina.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import zx.soft.sina.weibo.common.NamedList;
+import zx.soft.weibo.sina.common.NamedList;
 
 /**
  * 动态数据模型类
