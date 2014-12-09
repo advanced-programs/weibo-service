@@ -39,18 +39,11 @@
 		(#{wid},#{uid},#{nickname},#{statusesCount},#{year},#{yearMonth},#{yearMonthDay},#{weibo},NOW());
 	</insert>
 
-	<!-- 按天根据用户名获取每天分组统计结果 -->
-	<select id="selectSinaUserWeibosGroupByDay" parameterType="string"
+	<!-- 按天根据用户名获取分组统计结果（按年/月/日） -->
+	<select id="selectUserWeibosGroupByInterval" parameterType="UserWeibosGroupParams"
 		resultType="WeiboDayCount">
-		SELECT yearmonthday AS day,COUNT(*) AS count FROM `sina_user_weibos` WHERE
-		uid = #{uid} GROUP BY yearmonthday ORDER BY yearmonthday DESC;
+		SELECT ${interval} AS day,COUNT(*) AS count FROM ${tablename} WHERE
+		uid = #{uid} GROUP BY ${interval} ORDER BY ${interval} DESC LIMIT #{limitn};
 	</select>
 	
-	<!-- 按天根据用户名获取每月分组统计结果 -->
-	<select id="selectSinaUserWeibosGroupByMonth" parameterType="string"
-		resultType="WeiboDayCount">
-		SELECT yearmonth AS day,COUNT(*) AS count FROM `sina_user_weibos` WHERE
-		uid = #{uid} GROUP BY yearmonth ORDER BY yearmonth DESC;
-	</select>
-
 </mapper>

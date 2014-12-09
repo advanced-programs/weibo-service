@@ -11,6 +11,7 @@ import zx.soft.weibo.dao.common.MybatisConfig;
 import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
 import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
 import zx.soft.weibo.dao.domain.UserInfosByLocationParams;
+import zx.soft.weibo.dao.domain.UserWeibosGroupParams;
 import zx.soft.weibo.dao.domain.sina.SimpleWeibosInfo;
 import zx.soft.weibo.dao.domain.sina.WeiboDayCount;
 
@@ -87,30 +88,21 @@ public class WeibosDaoImpl {
 	/**
 	 * 获取某个用户当前微博总数
 	 */
-	public int selectSinaUserWeiboCount(String uid) {
+	public int selectUserWeiboCount(String tablename, String uid) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
-			return simpleWeibosDao.selectSinaUserWeiboCount(uid);
+			return simpleWeibosDao.selectUserWeiboCount(tablename, uid);
 		}
 	}
 
 	/**
-	 * 按天根据用户名获取每天分组统计结果
+	 * 按天根据用户名获取分组统计结果（按年/月/日）
 	 */
-	public List<WeiboDayCount> selectSinaUserWeibosGroupByDay(String uid) {
+	public List<WeiboDayCount> selectUserWeibosGroupByInterval(String tablename, String uid, String interval, int limitn) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
-			return simpleWeibosDao.selectSinaUserWeibosGroupByDay(uid);
-		}
-	}
-
-	/**
-	 * 按天根据用户名获取每月分组统计结果
-	 */
-	public List<WeiboDayCount> selectSinaUserWeibosGroupByMonth(String uid) {
-		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
-			WeibosDao simpleWeibosDao = sqlSession.getMapper(WeibosDao.class);
-			return simpleWeibosDao.selectSinaUserWeibosGroupByMonth(uid);
+			return simpleWeibosDao.selectUserWeibosGroupByInterval(new UserWeibosGroupParams(tablename, uid, interval,
+					limitn));
 		}
 	}
 

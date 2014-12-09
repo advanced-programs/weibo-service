@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
 import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
 import zx.soft.weibo.dao.domain.UserInfosByLocationParams;
+import zx.soft.weibo.dao.domain.UserWeibosGroupParams;
 import zx.soft.weibo.dao.domain.sina.SimpleWeibosInfo;
 import zx.soft.weibo.dao.domain.sina.WeiboDayCount;
 
@@ -47,17 +48,12 @@ public interface WeibosDao {
 	/**
 	 * 获取某个用户当前微博总数
 	 */
-	@Select("SELECT statusescount FROM `sina_user_weibos` WHERE uid = #{uid} LIMIT 1")
-	public int selectSinaUserWeiboCount(@Param("uid") String uid);
+	@Select("SELECT statusescount FROM ${tablename} WHERE uid = #{uid} LIMIT 1")
+	public int selectUserWeiboCount(@Param("tablename") String tablename, @Param("uid") String uid);
 
 	/**
-	 * 按天根据用户名获取每天分组统计结果
+	 * 按天根据用户名获取分组统计结果（按年/月/日）
 	 */
-	public List<WeiboDayCount> selectSinaUserWeibosGroupByDay(String uid);
-
-	/**
-	 * 按天根据用户名获取每月分组统计结果
-	 */
-	public List<WeiboDayCount> selectSinaUserWeibosGroupByMonth(String uid);
+	public List<WeiboDayCount> selectUserWeibosGroupByInterval(UserWeibosGroupParams userWeibosGroupParams);
 
 }

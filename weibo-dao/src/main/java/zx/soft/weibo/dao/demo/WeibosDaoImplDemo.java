@@ -11,7 +11,7 @@ public class WeibosDaoImplDemo {
 
 	public static void main(String[] args) {
 
-		WeibosDaoImpl sinaWeibos = new WeibosDaoImpl(MybatisConfig.ServerEnum.weibos);
+		WeibosDaoImpl weibosDaoImpl = new WeibosDaoImpl(MybatisConfig.ServerEnum.weibos);
 		/**
 		 * 新浪：获取某个地区的用户总量
 		 */
@@ -39,16 +39,24 @@ public class WeibosDaoImplDemo {
 		/**
 		 * 获取某个用户当前微博总数
 		 */
-		System.out.println(sinaWeibos.selectSinaUserWeiboCount("1943806713"));
+		//		System.out.println(weibosDaoImpl.selectUserWeiboCount("sina_user_weibos", "1943806713"));
+		//		System.out.println(weibosDaoImpl.selectUserWeiboCount("tencent_user_weibos", "wangshi"));
 		/**
-		 * 按天根据用户名获取每天分组统计结果
+		 * 按天根据用户名获取分组统计结果（按年/月/日）
 		 */
-		List<WeiboDayCount> data = sinaWeibos.selectSinaUserWeibosGroupByDay("1943806713");
+		List<WeiboDayCount> data = weibosDaoImpl.selectUserWeibosGroupByInterval("sina_user_weibos", "1943806713",
+				"year", 3);
 		System.out.println(JsonUtils.toJson(data));
-		/**
-		 * 按天根据用户名获取每月分组统计结果
-		 */
-		data = sinaWeibos.selectSinaUserWeibosGroupByMonth("1943806713");
+		data = weibosDaoImpl.selectUserWeibosGroupByInterval("sina_user_weibos", "1943806713", "yearmonth", 12);
+		System.out.println(JsonUtils.toJson(data));
+		data = weibosDaoImpl.selectUserWeibosGroupByInterval("sina_user_weibos", "1943806713", "yearmonthday", 30);
+		System.out.println(JsonUtils.toJson(data));
+		//
+		data = weibosDaoImpl.selectUserWeibosGroupByInterval("tencent_user_weibos", "wangshi", "year", 3);
+		System.out.println(JsonUtils.toJson(data));
+		data = weibosDaoImpl.selectUserWeibosGroupByInterval("tencent_user_weibos", "wangshi", "yearmonth", 12);
+		System.out.println(JsonUtils.toJson(data));
+		data = weibosDaoImpl.selectUserWeibosGroupByInterval("tencent_user_weibos", "wangshi", "yearmonthday", 30);
 		System.out.println(JsonUtils.toJson(data));
 	}
 

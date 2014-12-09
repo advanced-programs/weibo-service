@@ -70,19 +70,19 @@ public class UserInfoApplication extends Application {
 	}
 
 	/**
-	 * 新浪：根据时间段统计用户的发博数量
+	 * 根据时间段统计用户的发博数量
 	 */
-	public UserWeibosGroup analysisSinaUserWeibosByInterval(String uid, String interval) {
+	public UserWeibosGroup analysisUserWeibosByInterval(String tablename, String uid, String interval) {
 		UserWeibosGroup userWeibosGroup = new UserWeibosGroup();
-		int count = weibosDaoImpl.selectSinaUserWeiboCount(uid);
+		int count = weibosDaoImpl.selectUserWeiboCount(tablename, uid);
 		TreeMap<String, Integer> increment = new TreeMap<>();
 		HashMap<String, Integer> daycount = new HashMap<>();
 		if ("day".equalsIgnoreCase(interval)) {
-			daycount = transList2Map(weibosDaoImpl.selectSinaUserWeibosGroupByDay(uid));
-			increment = initIncrementByDay(daycount);
+			daycount = transList2Map(weibosDaoImpl.selectUserWeibosGroupByInterval(tablename, uid, "yearmonthday", 30));
+			increment = initIncrement(daycount, 30);
 		} else if ("month".equalsIgnoreCase(interval)) {
-			daycount = transList2Map(weibosDaoImpl.selectSinaUserWeibosGroupByMonth(uid));
-			increment = initIncrementByMonth(daycount);
+			daycount = transList2Map(weibosDaoImpl.selectUserWeibosGroupByInterval(tablename, uid, "yearmonth", 12));
+			increment = initIncrement(daycount, 12);
 		}
 		TreeMap<String, Integer> allcount = initAllcount(increment, count);
 		userWeibosGroup.setIncrement(increment);
@@ -100,27 +100,16 @@ public class UserInfoApplication extends Application {
 		return result;
 	}
 
-	private TreeMap<String, Integer> initIncrementByMonth(HashMap<String, Integer> daycount) {
+	private TreeMap<String, Integer> initIncrement(HashMap<String, Integer> daycount, int c) {
 		TreeMap<String, Integer> result = new TreeMap<>();
 		long time = System.currentTimeMillis();
 		String date;
-		for (int i = 0; i < 12; i++) {
-			date = FORMAT2.format(new Date(time - 86400_000L * i * 30));
-			if (daycount.get(date) == null) {
-				result.put(date, 0);
+		for (int i = 0; i < c; i++) {
+			if (c == 12) {
+				date = FORMAT2.format(new Date(time - 86400_000L * i * 32));
 			} else {
-				result.put(date, daycount.get(date));
+				date = FORMAT1.format(new Date(time - 86400_000L * i));
 			}
-		}
-		return result;
-	}
-
-	private TreeMap<String, Integer> initIncrementByDay(HashMap<String, Integer> daycount) {
-		TreeMap<String, Integer> result = new TreeMap<>();
-		long time = System.currentTimeMillis();
-		String date;
-		for (int i = 0; i < 30; i++) {
-			date = FORMAT1.format(new Date(time - 86400_000L * i));
 			if (daycount.get(date) == null) {
 				result.put(date, 0);
 			} else {
@@ -136,13 +125,6 @@ public class UserInfoApplication extends Application {
 			result.put(d.getDay(), d.getCount());
 		}
 		return result;
-	}
-
-	/**
-	 * 腾讯：根据时间段统计用户的发博数量
-	 */
-	public UserWeibosGroup analysisTencentUserWeibosByInterval(String tablename, String uid) {
-		return new UserWeibosGroup().instance();
 	}
 
 	public void close() {

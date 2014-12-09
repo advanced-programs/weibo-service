@@ -18,6 +18,8 @@
 			type="zx.soft.weibo.dao.domain.sina.SimpleWeibosInfo" />
 		<typeAlias alias="WeiboDayCount"
 			type="zx.soft.weibo.dao.domain.sina.WeiboDayCount" />
+		<typeAlias alias="UserWeibosGroupParams"
+			type="zx.soft.weibo.dao.domain.UserWeibosGroupParams" />
 	</typeAliases>
 	<environments default="weibos">
 		<environment id="weibos">

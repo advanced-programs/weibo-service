@@ -38,13 +38,13 @@ public class UserWeibosInfoResource extends ServerResource {
 		}
 		if ("sina".equalsIgnoreCase(type)) {
 			if (JavaPattern.isAllNum(uid)) {
-				return application.analysisSinaUserWeibosByInterval(uid, interval);
+				return application.analysisUserWeibosByInterval("sina_user_weibos", uid, interval);
 			} else {
-				logger.error("Params `type` or `uid` is null.");
+				logger.error("Params `type`,`uid` or `interval`` is null.");
 				return new ErrorResponse.Builder(-1, "param `uid` is error!").build();
 			}
 		} else if ("tencent".equalsIgnoreCase(type)) {
-			return application.analysisTencentUserWeibosByInterval(uid, interval);
+			return application.analysisUserWeibosByInterval("tencent_user_weibos", uid, interval);
 		} else {
 			return new ErrorResponse.Builder(-1, "param `type` is error!").build();
 		}
