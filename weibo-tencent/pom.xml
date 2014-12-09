@@ -4,12 +4,12 @@
 
 	<parent>
 		<groupId>zx.soft</groupId>
-		<artifactId>common-parent</artifactId>
-		<version>1.0.0</version>
+		<artifactId>weibo-service</artifactId>
+		<version>1.2.0</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>weibo-tencent</artifactId>
-	<version>1.1.0</version>
 	<name>Weibo Tencent</name>
 	<description>Analysis for Users,Weibos,Comments,Reposts</description>
 
