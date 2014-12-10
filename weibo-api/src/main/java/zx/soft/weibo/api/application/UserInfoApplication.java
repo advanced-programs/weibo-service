@@ -11,7 +11,8 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import zx.soft.weibo.api.domain.UserWeibosGroup;
+import zx.soft.weibo.api.domain.ResponseJSFormat;
+import zx.soft.weibo.api.domain.ResponseJSFormat.NameDataPair;
 import zx.soft.weibo.api.resource.UserBaseInfoResource;
 import zx.soft.weibo.api.resource.UserWeibosInfoResource;
 import zx.soft.weibo.dao.common.MybatisConfig;
@@ -72,8 +73,8 @@ public class UserInfoApplication extends Application {
 	/**
 	 * 根据时间段统计用户的发博数量
 	 */
-	public UserWeibosGroup analysisUserWeibosByInterval(String tablename, String uid, String interval) {
-		UserWeibosGroup userWeibosGroup = new UserWeibosGroup();
+	public ResponseJSFormat analysisUserWeibosByInterval(String tablename, String uid, String interval) {
+		ResponseJSFormat responseJSFormat = new ResponseJSFormat();
 		int count = weibosDaoImpl.selectUserWeiboCount(tablename, uid);
 		TreeMap<String, Integer> increment = new TreeMap<>();
 		HashMap<String, Integer> daycount = new HashMap<>();
@@ -85,9 +86,19 @@ public class UserInfoApplication extends Application {
 			increment = initIncrement(daycount, 12);
 		}
 		TreeMap<String, Integer> allcount = initAllcount(increment, count);
-		userWeibosGroup.setIncrement(increment);
-		userWeibosGroup.setAllcount(allcount);
-		return userWeibosGroup;
+		// 组装数据
+		NameDataPair nameDataPair1 = new NameDataPair();
+		nameDataPair1.setName("increment");
+		NameDataPair nameDataPair2 = new NameDataPair();
+		nameDataPair2.setName("increment");
+		for (Entry<String, Integer> tmp : increment.entrySet()) {
+			responseJSFormat.setCategories(tmp.getKey());
+			nameDataPair1.setData(tmp.getValue());
+			nameDataPair2.setData(allcount.get(tmp.getKey()));
+		}
+		responseJSFormat.setSeries(nameDataPair1);
+		responseJSFormat.setSeries(nameDataPair2);
+		return responseJSFormat;
 	}
 
 	private TreeMap<String, Integer> initAllcount(TreeMap<String, Integer> increment, int count) {
