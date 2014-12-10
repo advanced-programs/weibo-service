@@ -51,6 +51,14 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>zxsoft-public</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.3.23:18081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
 	<inceptionYear>2014</inceptionYear>
 
 	<licenses>
