@@ -9,8 +9,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>weibo-api</artifactId>
-	<name>Weibo API</name>
+	<artifactId>weibo-web</artifactId>
+	<name>Weibo Web</name>
 
 	<dependencies>
 		<dependency>
@@ -88,7 +88,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
 				<configuration>
 					<excludes>
 						<exclude>data_db.properties</exclude>

@@ -19,7 +19,7 @@
 		<module>weibo-tencent</module>
 		<module>weibo-dao</module>
 		<module>weibo-core</module>
-		<module>weibo-api</module>
+		<module>weibo-web</module>
 	</modules>
 
 	<dependencies>

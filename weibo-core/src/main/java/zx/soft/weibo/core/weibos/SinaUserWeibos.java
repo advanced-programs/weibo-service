@@ -21,7 +21,7 @@ import zx.soft.weibo.sina.api.SinaWeiboAPI;
 import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
- * 新浪用户微博列表类
+ * 新浪用户微博列表类：简略版
  * 
  * @author wgybzb
  *
