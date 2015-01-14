@@ -50,7 +50,6 @@ public class SinaWeiboAPI {
 	 * count:单页返回的记录条数，最大不超过200，默认为20
 	 */
 	public SinaDomain statusesPublicTimeline(int count) {
-		logger.info("Statuses Public Timeline at count=" + count);
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_PUBLIC_TIMELINE, superid).setParams(
 				"count", Math.min(count, 200) + "").build();
 		String data = clientDao.doGet(requestURL.getURL(), null);
@@ -72,7 +71,6 @@ public class SinaWeiboAPI {
 	 */
 	public SinaDomain statusesUserTimelineByUid(String uid, String sinceId, String maxId, int count, int page,
 			int baseApp, int feature, int trimUser) {
-		logger.info("Statuses User Timeline at uid=" + uid + ",page=" + page);
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, superid)
 				.setParams("uid", uid).setParams("since_id", sinceId).setParams("max_id", maxId)
 				.setParams("count", count + "").setParams("page", page + "").setParams("base_app", baseApp + "")
@@ -84,7 +82,6 @@ public class SinaWeiboAPI {
 
 	public SinaDomain statusesUserTimelineByScreenName(String screenName, String sinceId, String maxId, int count,
 			int page, int baseApp, int feature, int trimUser) {
-		logger.info("Statuses User Timeline at screenName=" + screenName + ",page=" + page);
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, superid)
 				.setParams("screen_name", screenName).setParams("since_id", sinceId).setParams("max_id", maxId)
 				.setParams("count", count + "").setParams("page", page + "").setParams("base_app", baseApp + "")
@@ -109,7 +106,6 @@ public class SinaWeiboAPI {
 	 */
 	public SinaDomain commentsShow(String cookie, String wid, String sinceId, String maxId, int count, int page,
 			int filterByAuthor) {
-		logger.info("Comments Show at wid=" + wid + ",page=" + page);
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.COMMENTS_SHOW, superid).setParams("id", wid)
 				.setParams("since_id", sinceId).setParams("max_id", maxId).setParams("count", count + "")
 				.setParams("page", page + "").setParams("filter_by_author", filterByAuthor + "").build();
@@ -127,7 +123,6 @@ public class SinaWeiboAPI {
 	 * uid:需要查询的用户ID
 	 */
 	public SinaDomain userShow(String uid) {
-		logger.info("UserShow on uid=" + uid);
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("uid", uid)
 				.build();
 		String data = clientDao.doGet(requestURL.getURL(), null);
