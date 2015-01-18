@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cc.pp.sina.dao.weibos.SinaWeibosDao">
+<mapper namespace="zx.soft.weibo.dao.weibos.SinaWeibosDao">
 
 	<!-- 获取数据表中的最大bid -->
 	<select id="getMaxBid" parameterType="WeibosSelectParams" resultType="int">
@@ -13,7 +13,7 @@
 		INSERT INTO ${tablename} (`wid`,`username`,`repostscount`,`commentscount`,`attitudescount`,`text`,`createat`,`owid`,
 		`ousername`,`favorited`,`geo`,`latitude`,`longitude`,`originalpic`,`source`,`visible`,`mlevel`,`lasttime`) VALUES 
 		(#{wid},#{username},#{repostscount},#{commentscount},#{attitudescount},#{text},#{createat},#{owid},#{ousername},
-		#{favorited},#{geo},#{latitude},#{longitude},#{originalpic},#{source},#{visible},#{mlevel},#{lasttime});
+		#{favorited},#{geo},#{latitude},#{longitude},#{originalpic},#{source},#{visible},#{mlevel},NOW());
 	</insert>
 
 	<!-- 批量获取微博数据 -->
@@ -23,12 +23,6 @@
 	    WHERE `id` BETWEEN #{low} AND #{high};
 	</select>
 	
-	<!-- 批量获取微博数据，旧数据结构 -->
-	<select id="getWeibosInfoOld" parameterType="WeibosSelectParams" resultType="WeiboInfoOld">
-       SELECT `wid`,`username`,`repostscount`,`commentscount`,`text`,`createat`,`owid`,`ousername`,`favorited`,`geo`,`latitude`,
-       `longitude`,`originalpic`,`source`,`visible`,`lasttime` FROM ${tablename} WHERE `id` BETWEEN #{low} AND #{high};
-	</select>
-
 	<!-- 获取单条微博数据 -->
 	<select id="getWeiboInfo" parameterType="WeiboSelectParams" resultType="WeiboInfo">
 	    SELECT `wid`,`username`,`repostscount`,`commentscount`,`attitudescount`,`text`,`createat`,`owid`,`ousername`,`favorited`,
@@ -44,7 +38,7 @@
 	<insert id="insertTablenames" parameterType="TablenameInsertParams"
 		useGeneratedKeys="true" keyProperty="id" flushCache="true"
 		statementType="PREPARED">
-		INSERT INTO ${tablename} (`name`) VALUES (#{name});
+		INSERT INTO ${tablename} (`name`,`lasttime`) VALUES (#{name},NOW());
 	</insert>
 
 	<!-- 读取微博数据表名的数据表 -->

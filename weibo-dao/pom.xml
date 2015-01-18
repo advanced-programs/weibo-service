@@ -18,16 +18,14 @@
 			<artifactId>weibo-sina</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<!-- 内部包 -->
-		<dependency>
-			<groupId>zx.soft</groupId>
-			<artifactId>common-utils</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 		<!-- Mybatis包 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>

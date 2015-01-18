@@ -1,5 +1,7 @@
 package zx.soft.weibo.dao.domain.sina;
 
+import java.util.Date;
+
 public class WeiboInsertParams {
 
 	private final String tablename;
@@ -9,7 +11,7 @@ public class WeiboInsertParams {
 	private final int commentscount;
 	private final int attitudescount;
 	private final String text;
-	private final long createat;
+	private final Date createat;
 	private final long owid;
 	private final long ousername;
 	private final boolean favorited;
@@ -20,7 +22,6 @@ public class WeiboInsertParams {
 	private final String source;
 	private final String visible;
 	private final int mlevel;
-	private final long lasttime;
 
 	public WeiboInsertParams(Builder builder) {
 		this.tablename = builder.tablename;
@@ -41,7 +42,6 @@ public class WeiboInsertParams {
 		this.source = builder.source;
 		this.visible = builder.visible;
 		this.mlevel = builder.mlevel;
-		this.lasttime = builder.lasttime;
 	}
 
 	public static class Builder {
@@ -53,7 +53,7 @@ public class WeiboInsertParams {
 		private int commentscount;
 		private int attitudescount;
 		private String text = "";
-		private long createat;
+		private Date createat;
 		private long owid;
 		private long ousername;
 		private boolean favorited;
@@ -64,7 +64,6 @@ public class WeiboInsertParams {
 		private String source = "";
 		private String visible = "";
 		private int mlevel;
-		private long lasttime;
 
 		public Builder(String tablename, long wid, long username) {
 			this.tablename = tablename;
@@ -92,7 +91,7 @@ public class WeiboInsertParams {
 			return this;
 		}
 
-		public Builder setCreateat(long createat) {
+		public Builder setCreateat(Date createat) {
 			this.createat = createat;
 			return this;
 		}
@@ -147,11 +146,6 @@ public class WeiboInsertParams {
 			return this;
 		}
 
-		public Builder setLasttime(long lasttime) {
-			this.lasttime = lasttime;
-			return this;
-		}
-
 		public WeiboInsertParams build() {
 			return new WeiboInsertParams(this);
 		}
@@ -186,7 +180,7 @@ public class WeiboInsertParams {
 		return text;
 	}
 
-	public long getCreateat() {
+	public Date getCreateat() {
 		return createat;
 	}
 
@@ -228,10 +222,6 @@ public class WeiboInsertParams {
 
 	public int getMlevel() {
 		return mlevel;
-	}
-
-	public long getLasttime() {
-		return lasttime;
 	}
 
 }

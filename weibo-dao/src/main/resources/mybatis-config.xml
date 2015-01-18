@@ -20,6 +20,16 @@
 			type="zx.soft.weibo.dao.domain.sina.WeiboDayCount" />
 		<typeAlias alias="UserWeibosGroupParams"
 			type="zx.soft.weibo.dao.domain.UserWeibosGroupParams" />
+		<!-- 新浪微博 -->
+		<typeAlias alias="WeibosSelectParams"
+			type="zx.soft.weibo.dao.domain.sina.WeibosSelectParams" />
+		<typeAlias alias="WeiboInsertParams"
+			type="zx.soft.weibo.dao.domain.sina.WeiboInsertParams" />
+		<typeAlias alias="WeiboSelectParams"
+			type="zx.soft.weibo.dao.domain.sina.WeiboSelectParams" />
+		<typeAlias alias="TablenameInsertParams"
+			type="zx.soft.weibo.dao.domain.sina.TablenameInsertParams" />
+		<typeAlias alias="WeiboInfo" type="zx.soft.weibo.dao.domain.sina.WeiboInfo" />
 	</typeAliases>
 	<environments default="weibos">
 		<environment id="weibos">
@@ -38,6 +48,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="WeibosDaoMapper.xml" />
+		<mapper resource="SinaWeibosDaoMapper.xml" />
 	</mappers>
 </configuration>
 	

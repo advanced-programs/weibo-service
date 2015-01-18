@@ -1,5 +1,7 @@
 package zx.soft.weibo.dao.domain.sina;
 
+import java.util.Date;
+
 public class WeiboInfo {
 
 	private long wid;
@@ -8,7 +10,7 @@ public class WeiboInfo {
 	private int commentscount;
 	private int attitudescount;
 	private String text;
-	private long createat;
+	private Date createat;
 	private long owid;
 	private long ousername;
 	private boolean favorited;
@@ -19,7 +21,6 @@ public class WeiboInfo {
 	private String source;
 	private String visible;
 	private int mlevel;
-	private long lasttime;
 
 	public long getWid() {
 		return wid;
@@ -69,11 +70,11 @@ public class WeiboInfo {
 		this.text = text;
 	}
 
-	public long getCreateat() {
+	public Date getCreateat() {
 		return createat;
 	}
 
-	public void setCreateat(long createat) {
+	public void setCreateat(Date createat) {
 		this.createat = createat;
 	}
 
@@ -155,14 +156,6 @@ public class WeiboInfo {
 
 	public void setMlevel(int mlevel) {
 		this.mlevel = mlevel;
-	}
-
-	public long getLasttime() {
-		return lasttime;
-	}
-
-	public void setLasttime(long lasttime) {
-		this.lasttime = lasttime;
 	}
 
 }

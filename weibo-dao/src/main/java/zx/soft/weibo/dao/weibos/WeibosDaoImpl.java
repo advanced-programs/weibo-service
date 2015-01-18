@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import zx.soft.utils.log.LogbackUtil;
 import zx.soft.weibo.dao.common.MybatisConfig;
 import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
 import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
@@ -25,7 +26,7 @@ public class WeibosDaoImpl {
 		try {
 			sqlSessionFactory = MybatisConfig.getSqlSessionFactory(server);
 		} catch (RuntimeException e) {
-			logger.error("SentimentRecord RuntimeException:{}", e);
+			logger.error("Exception:{}", LogbackUtil.expection2Str(e));
 		}
 	}
 
