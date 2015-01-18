@@ -56,7 +56,7 @@ public class WeiboInsertParams {
 		private Date createat;
 		private long owid;
 		private long ousername;
-		private boolean favorited;
+		private boolean favorited = Boolean.FALSE;
 		private String geo = "";
 		private double latitude;
 		private double longitude;

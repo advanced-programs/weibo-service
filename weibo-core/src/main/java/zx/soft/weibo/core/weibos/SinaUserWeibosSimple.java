@@ -26,9 +26,9 @@ import zx.soft.weibo.sina.domain.SinaDomain;
  * @author wgybzb
  *
  */
-public class SinaUserWeibos {
+public class SinaUserWeibosSimple {
 
-	private static Logger logger = LoggerFactory.getLogger(SinaUserWeibos.class);
+	private static Logger logger = LoggerFactory.getLogger(SinaUserWeibosSimple.class);
 
 	private static final SimpleDateFormat FORMAT1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
 	private static final SimpleDateFormat FORMAT2 = new SimpleDateFormat("yyyyMMdd");
@@ -36,7 +36,7 @@ public class SinaUserWeibos {
 	private final SinaWeiboAPI api;
 	private final WeibosDaoImpl weibosDaoImpl;
 
-	public SinaUserWeibos(ClientDao clientDao) {
+	public SinaUserWeibosSimple(ClientDao clientDao) {
 		api = new SinaWeiboAPI(clientDao);
 		weibosDaoImpl = new WeibosDaoImpl(MybatisConfig.ServerEnum.weibos);
 	}
@@ -45,7 +45,7 @@ public class SinaUserWeibos {
 	 * 测试函数
 	 */
 	public static void main(String[] args) {
-		SinaUserWeibos userWeibos = new SinaUserWeibos(new HttpClientDaoImpl());
+		SinaUserWeibosSimple userWeibos = new SinaUserWeibosSimple(new HttpClientDaoImpl());
 		try (BufferedReader br = new BufferedReader(new FileReader(new File("data/uids")));) {
 			String str;
 			while ((str = br.readLine()) != null) {
