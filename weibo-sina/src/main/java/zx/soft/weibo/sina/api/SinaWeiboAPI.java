@@ -162,7 +162,7 @@ public class SinaWeiboAPI {
 			}
 			value = node.get(field).toString().replaceAll("\"", "");
 			if (value.length() > 0 && value.length() < 15 && JavaPattern.isAllNum(value) && !value.contains("-")) {
-				if (value.contains(".")) {
+				if (value.contains(".") | value.contains("+")) {
 					result.addField(field, Double.parseDouble(value));
 				} else {
 					result.addField(field, Long.parseLong(value));
