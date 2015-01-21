@@ -87,7 +87,7 @@ public class SinaUserWeibosSimple {
 					try {
 						simpleWeibosInfo.setWeibo(new String(weibo.getFieldValue("text").toString().getBytes(), "GBK"));
 					} catch (UnsupportedEncodingException e1) {
-						throw new RuntimeException(e);
+						//						throw new RuntimeException(e);
 					}
 					weibosDaoImpl.insertSinaUserWeibos(simpleWeibosInfo);
 				}
