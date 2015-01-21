@@ -1,13 +1,13 @@
-package zx.soft.weibo.api.driver;
+package zx.soft.weibo.web.driver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.weibo.api.server.UserInfoServer;
+import zx.soft.weibo.web.server.UserInfoServer;
 
-public class WeiboApiDriver {
+public class WeiboWebDriver {
 
-	private static Logger logger = LoggerFactory.getLogger(WeiboApiDriver.class);
+	private static Logger logger = LoggerFactory.getLogger(WeiboWebDriver.class);
 
 	/**
 	 * 主函数

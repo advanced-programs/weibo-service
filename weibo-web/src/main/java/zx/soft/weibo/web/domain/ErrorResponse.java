@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.domain;
+package zx.soft.weibo.web.domain;
 
 public class ErrorResponse {
 

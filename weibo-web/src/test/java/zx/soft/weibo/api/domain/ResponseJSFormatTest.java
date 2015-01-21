@@ -5,7 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import zx.soft.utils.json.JsonUtils;
-import zx.soft.weibo.api.domain.ResponseJSFormat.NameDataPair;
+import zx.soft.weibo.web.domain.ResponseJSFormat;
+import zx.soft.weibo.web.domain.ResponseJSFormat.NameDataPair;
 
 public class ResponseJSFormatTest {
 

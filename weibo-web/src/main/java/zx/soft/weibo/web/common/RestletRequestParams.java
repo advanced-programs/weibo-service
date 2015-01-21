@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.common;
+package zx.soft.weibo.web.common;
 
 import java.util.HashMap;
 

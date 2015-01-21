@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.server;
+package zx.soft.weibo.web.server;
 
 import java.util.Properties;
 
@@ -6,7 +6,7 @@ import org.restlet.Component;
 import org.restlet.data.Protocol;
 
 import zx.soft.utils.config.ConfigUtil;
-import zx.soft.weibo.api.application.UserInfoApplication;
+import zx.soft.weibo.web.application.UserInfoApplication;
 
 /**
  * 新浪用户信息服务

@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.application;
+package zx.soft.weibo.web.application;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -11,15 +11,15 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import zx.soft.weibo.api.domain.ResponseJSFormat;
-import zx.soft.weibo.api.domain.ResponseJSFormat.NameDataPair;
-import zx.soft.weibo.api.resource.UserBaseInfoResource;
-import zx.soft.weibo.api.resource.UserWeibosInfoResource;
 import zx.soft.weibo.dao.common.MybatisConfig;
 import zx.soft.weibo.dao.domain.SinaUserBaseInfo;
 import zx.soft.weibo.dao.domain.TencentUserBaseInfo;
 import zx.soft.weibo.dao.domain.sina.WeiboDayCount;
 import zx.soft.weibo.dao.weibos.WeibosDaoImpl;
+import zx.soft.weibo.web.domain.ResponseJSFormat;
+import zx.soft.weibo.web.domain.ResponseJSFormat.NameDataPair;
+import zx.soft.weibo.web.resource.UserBaseInfoResource;
+import zx.soft.weibo.web.resource.UserWeibosInfoResource;
 
 public class UserInfoApplication extends Application {
 

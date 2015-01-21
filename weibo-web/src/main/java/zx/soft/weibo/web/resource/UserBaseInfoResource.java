@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.resource;
+package zx.soft.weibo.web.resource;
 
 import java.util.HashMap;
 
@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
 
 import zx.soft.utils.chars.JavaPattern;
 import zx.soft.utils.codec.URLCodecUtils;
-import zx.soft.weibo.api.application.UserInfoApplication;
-import zx.soft.weibo.api.common.RestletRequestParams;
-import zx.soft.weibo.api.domain.ErrorResponse;
-import zx.soft.weibo.api.domain.SinaUserInfoResult;
-import zx.soft.weibo.api.domain.TencentUserInfoResult;
+import zx.soft.weibo.web.application.UserInfoApplication;
+import zx.soft.weibo.web.common.RestletRequestParams;
+import zx.soft.weibo.web.domain.ErrorResponse;
+import zx.soft.weibo.web.domain.SinaUserInfoResult;
+import zx.soft.weibo.web.domain.TencentUserInfoResult;
 
 public class UserBaseInfoResource extends ServerResource {
 

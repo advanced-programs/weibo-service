@@ -1,4 +1,4 @@
-package zx.soft.weibo.api.resource;
+package zx.soft.weibo.web.resource;
 
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import zx.soft.utils.chars.JavaPattern;
 import zx.soft.utils.codec.URLCodecUtils;
-import zx.soft.weibo.api.application.UserInfoApplication;
-import zx.soft.weibo.api.domain.ErrorResponse;
+import zx.soft.weibo.web.application.UserInfoApplication;
+import zx.soft.weibo.web.domain.ErrorResponse;
 
 public class UserWeibosInfoResource extends ServerResource {
 
