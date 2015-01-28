@@ -90,7 +90,7 @@ public class UserInfoApplication extends Application {
 		NameDataPair nameDataPair1 = new NameDataPair();
 		nameDataPair1.setName("increment");
 		NameDataPair nameDataPair2 = new NameDataPair();
-		nameDataPair2.setName("increment");
+		nameDataPair2.setName("allcount");
 		for (Entry<String, Integer> tmp : increment.entrySet()) {
 			responseJSFormat.setCategories(tmp.getKey());
 			nameDataPair1.setData(tmp.getValue());
