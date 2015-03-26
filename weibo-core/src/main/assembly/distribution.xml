@@ -12,6 +12,7 @@
 		<fileSet>
 			<directory>src/main/resources</directory>
 			<includes>
+				<include>data_db.properties</include>
 				<include>logback.xml</include>
 				<include>super.properties</include>
 			</includes>

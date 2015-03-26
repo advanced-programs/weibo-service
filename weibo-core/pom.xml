@@ -73,7 +73,7 @@
 					<excludes>
 						<exclude>data_db.properties</exclude>
 						<exclude>logback.xml</exclude>
-						<exclude>web-server.properties</exclude>
+						<exclude>super.properties</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

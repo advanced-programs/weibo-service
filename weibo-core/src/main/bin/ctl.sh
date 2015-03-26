@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mainClass=zx.soft.sina.weibo.driver.SinaWeibosDriver
+mainClass=zx.soft.weibos.core.driver.SpiderDriver
 
 # resolve links - $0 may be a softlink
 PRG="$0"
