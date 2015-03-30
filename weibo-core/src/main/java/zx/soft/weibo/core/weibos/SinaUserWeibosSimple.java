@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -22,7 +21,7 @@ import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 新浪用户微博列表类：简略版
- * 
+ *
  * @author wgybzb
  *
  */
@@ -86,10 +85,10 @@ public class SinaUserWeibosSimple {
 					logger.error("SQLException:{},text={}", e, weibo.getFieldValue("text").toString());
 					try {
 						simpleWeibosInfo.setWeibo(new String(weibo.getFieldValue("text").toString().getBytes(), "GBK"));
-					} catch (UnsupportedEncodingException e1) {
+						weibosDaoImpl.insertSinaUserWeibos(simpleWeibosInfo);
+					} catch (Exception e1) {
 						//						throw new RuntimeException(e);
 					}
-					weibosDaoImpl.insertSinaUserWeibos(simpleWeibosInfo);
 				}
 			}
 			page++;
