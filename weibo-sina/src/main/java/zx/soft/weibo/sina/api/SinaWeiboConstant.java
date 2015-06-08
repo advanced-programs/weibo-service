@@ -2,7 +2,7 @@ package zx.soft.weibo.sina.api;
 
 /**
  * 新浪微博API相关常量
- * 
+ *
  * @author wanggang
  *
  */
@@ -86,6 +86,65 @@ public class SinaWeiboConstant {
 	/**
 	 * 6、关系
 	 */
+	/*
+	 * 关系目录
+	 */
+	private static final String FRIENDSHIPS = "friendships/";
+
+	/*
+	 * 获取用户的关注列表
+	 * 	uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为50，最大不超过200。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
+	 */
+	public static final String FRIEDNSHIPS_FRIEDNS = ROOT_URL + FRIENDSHIPS + "friends.json";
+
+	/*
+	 * 获取用户的粉丝列表
+	 * uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为50，最大不超过200。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
+	 */
+	public static final String FRIENDSHIPS_FOLLOWERS = ROOT_URL + FRIENDSHIPS + "followers.json";
+
+	/*
+	 * 关注子目录
+	 */
+	private static final String FRIENDS = "friends/";
+
+	/*
+	 * 获取用户关注的用户UID列表:
+	 * uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为500，最大不超过5000。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 */
+	public static final String FRIENDSHIPS_FRIENDS_IDS = ROOT_URL + FRIENDSHIPS + FRIENDS + "ids.json";
+
+	/*
+	 * 粉丝子目录
+	 */
+	private static final String FOLLOWERS = "followers/";
+
+	/*
+	 * 获取用户粉丝的用户UID列表
+	 * uid: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为500，最大不超过5000。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 */
+	public static final String FRIEDNSHIPS_FOLLOWERS_IDS = ROOT_URL + FRIENDSHIPS + FOLLOWERS + "ids.json";
+
+	/*
+	 * 获取用户的活跃粉丝列表
+	 * uid: 需要查询的用户UID。
+	 * count: 返回的记录条数，默认为20，最大不超过200。
+	 */
+	public static final String FRIENDSHIPS_FOLLOWERS_ACTIVE = ROOT_URL + FRIENDSHIPS + FOLLOWERS + "active.json";
 
 	/**
 	 * 7、好友分组

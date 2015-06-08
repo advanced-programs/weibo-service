@@ -18,7 +18,7 @@ import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 新浪微博API
- * 
+ *
  * @author wanggang
  *
  */
@@ -122,7 +122,7 @@ public class SinaWeiboAPI {
 	 * 根据用户ID获取用户信息
 	 * uid:需要查询的用户ID
 	 */
-	public SinaDomain userShow(String uid) {
+	public SinaDomain usersShow(String uid) {
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("uid", uid)
 				.build();
 		String data = clientDao.doGet(requestURL.getURL(), null);
@@ -133,6 +133,83 @@ public class SinaWeiboAPI {
 	/**
 	 * 6、关系
 	 */
+
+	/*
+	 * 获取用户的关注列表
+	 * 	uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为50，最大不超过200。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
+	 */
+	public SinaDomain friendshipsFriends(String uid, int count, int cursor, int trim_status) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FRIEDNS, superid)
+				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "")
+				.setParams("trim_status", trim_status + "").build();
+		String data = clientDao.doGet(requestURL.getURL(), null);
+		SinaDomain result = parseJsonTree(data);
+		return result;
+	}
+
+	/*
+	 * 获取用户关注的用户UID列表:
+	 * uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为500，最大不超过5000。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 */
+	public SinaDomain friendshipsFriendsIDs(String uid, int count, int cursor, String cookie) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FRIENDS_IDS, superid)
+				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
+		String data = clientDao.doGet(requestURL.getURL(), cookie);
+		SinaDomain result = parseJsonTreeIDs(data);
+		return result;
+	}
+
+	/*
+	 * 获取用户的粉丝列表
+	 * uid	: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为50，最大不超过200。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
+	 */
+	public SinaDomain friendshipsFollowers(String uid, int count, int cursor, int trim_status) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS, superid)
+				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "")
+				.setParams("trim_status", trim_status + "").build();
+		String data = clientDao.doGet(requestURL.getURL(), null);
+		SinaDomain result = parseJsonTree(data);
+		return result;
+	}
+
+	/*
+	 * 获取用户粉丝的用户UID列表
+	 * uid: 需要查询的用户UID。
+	 * screen_name: 需要查询的用户昵称。
+	 * count: 单页返回的记录条数，默认为500，最大不超过5000。
+	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
+	 */
+	public SinaDomain friendshipsFollowersIDs(String uid, int count, int cursor, String cookie) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FOLLOWERS_IDS, superid)
+				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
+		String data = clientDao.doGet(requestURL.getURL(), cookie);
+		SinaDomain result = parseJsonTreeIDs(data);
+		return result;
+	}
+
+	/*
+	 * 获取用户的活跃粉丝列表
+	 * uid: 需要查询的用户UID。
+	 * count: 返回的记录条数，默认为20，最大不超过200。
+	 */
+	public SinaDomain friendshipsFollowersActive(String uid, int count, int cursor) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS_ACTIVE, superid)
+				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
+		String data = clientDao.doGet(requestURL.getURL(), null);
+		SinaDomain result = parseJsonTree(data);
+		return result;
+	}
 
 	/**
 	 * JSON树解析方法
@@ -153,6 +230,47 @@ public class SinaWeiboAPI {
 					List<Object> arr = new ArrayList<>();
 					for (JsonNode nodet : tnode) {
 						arr.add(parseJsonTree(nodet.toString()));
+					}
+					result.put(field, arr);
+				} else {
+					result.put(field, parseJsonTree(tnode.toString()));
+				}
+				continue;
+			}
+			value = node.get(field).toString().replaceAll("\"", "");
+			if (value.length() > 0 && value.length() < 15 && JavaPattern.isAllNum(value) && !value.contains("-")) {
+				if (value.contains(".") | value.contains("+")) {
+					result.addField(field, Double.parseDouble(value));
+				} else {
+					result.addField(field, Long.parseLong(value));
+				}
+			} else {
+				result.addField(field, value);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * 针对关注和粉丝ID列表
+	 * @param jsonStr
+	 * @return
+	 */
+	private SinaDomain parseJsonTreeIDs(String jsonStr) {
+		SinaDomain result = new SinaDomain();
+		JsonNode node = JsonNodeUtils.getJsonNode(jsonStr);
+		Iterator<String> fieldNames = node.getFieldNames();
+		String field = "", value = "";
+		JsonNode tnode = null;
+		while (fieldNames.hasNext()) {
+			field = fieldNames.next();
+			if (JsonNodeUtils.getJsonNode(node, field).size() != 0) {
+				tnode = JsonNodeUtils.getJsonNode(node, field);
+				if (tnode.isArray()) {
+					List<Object> arr = new ArrayList<>();
+					for (JsonNode nodet : tnode) {
+						arr.add(nodet.toString());
 					}
 					result.put(field, arr);
 				} else {

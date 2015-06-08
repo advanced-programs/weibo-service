@@ -7,16 +7,16 @@ import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 获取用户基本信息
- * 
+ *
  * @author wanggang
  *
  */
-public class UserShow {
+public class UsersShow {
 
 	public static void main(String[] args) {
 
 		SinaWeiboAPI api = new SinaWeiboAPI(new HttpClientDaoImpl());
-		SinaDomain sinaDomain = api.userShow("1732243641");
+		SinaDomain sinaDomain = api.usersShow("1732243641");
 		System.out.println(JsonUtils.toJson(sinaDomain));
 
 	}

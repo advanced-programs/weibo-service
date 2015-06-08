@@ -16,10 +16,10 @@
 
 	<modules>
 		<module>weibo-sina</module>
-		<module>weibo-tencent</module>
 		<module>weibo-dao</module>
 		<module>weibo-core</module>
 		<module>weibo-web</module>
+		<module>weibo-mapred</module>
 	</modules>
 
 	<dependencies>
