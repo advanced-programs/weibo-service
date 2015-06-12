@@ -14,7 +14,7 @@ import org.apache.hadoop.io.SequenceFile;
  * @author wgybzb
  *
  */
-public class MapFileFixerDemo {
+public class MapFileFixer {
 
 	@SuppressWarnings({ "resource", "rawtypes", "unchecked" })
 	public static void main(String[] args) throws Exception {
