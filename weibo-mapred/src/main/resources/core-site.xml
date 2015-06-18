@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuratuin>
+<configuration>
 	<property>
 		<name>fs.default.name</name>
-		<value>hdfs://bigdata4:19000</value>
+		<value>hdfs://bigdata4:9000</value>
 	</property>
-</configuratuin>
+</configuration>

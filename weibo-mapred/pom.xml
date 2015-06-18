@@ -13,6 +13,7 @@
 	<name>Weibo Mapred</name>
 
 	<dependencies>
+		<!-- 子项目 -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>weibo-sina</artifactId>
@@ -23,6 +24,25 @@
 			<artifactId>redis-client</artifactId>
 			<version>1.3.0</version>
 		</dependency>
+		<!-- CDH5 -->
+		<!-- <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-hadoop-cdh5-dependencies</artifactId> 
+			<version>1.0.0</version> </dependency> <dependency> <groupId>org.kitesdk</groupId> 
+			<artifactId>kite-hbase-cdh5-dependencies</artifactId> <version>1.0.0</version> 
+			</dependency> <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-hadoop-cdh5-test-dependencies</artifactId> 
+			<version>1.0.0</version> </dependency> <dependency> <groupId>org.kitesdk</groupId> 
+			<artifactId>kite-hbase-cdh5-test-dependencies</artifactId> <version>1.0.0</version> 
+			</dependency> <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-tools-cdh5</artifactId> 
+			<version>1.0.0</version> </dependency> <dependency> <groupId>org.deeplearning4j</groupId> 
+			<artifactId>spark-cdh5</artifactId> <version>0.0.3.3.1.alpha1</version> </dependency> 
+			<dependency> <groupId>com.facebook.presto</groupId> <artifactId>presto-hive-cdh5</artifactId> 
+			<version>0.107</version> </dependency> -->
+		<!-- 其他包 -->
+		<!-- <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-client</artifactId> 
+			<version>2.7.0</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -31,10 +51,6 @@
 			<groupId>org.apache.mrunit</groupId>
 			<artifactId>mrunit</artifactId>
 			<classifier>hadoop1</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
