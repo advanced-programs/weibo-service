@@ -13,31 +13,17 @@ public class Constant {
 
 	private static String sinaUserFriendsPath;
 
-	private static String dbUrl;
-
-	private static String dbUser;
-
-	private static String dbPasswd;
-
 	private static String tsdbHost;
 
 	private static int tsdbPort;
 
 	static {
-		try (InputStream in = Constant.class.getClassLoader().getResourceAsStream("conf.properties")) {
+		try (InputStream in = Constant.class.getClassLoader().getResourceAsStream("cache-config.properties")) {
 			Properties conf = new Properties();
 			conf.load(in);
 
-			sinaUserFriendsPath = conf.getProperty("sinaUserFriendsPath");
+			sinaUserFriendsPath = conf.getProperty("sina.user.friends.path");
 			logger.info("sinaUserFriendsPath: " + sinaUserFriendsPath);
-
-			dbUrl = conf.getProperty("dbUrl");
-			logger.info("dbUrl: " + dbUrl);
-
-			dbUser = conf.getProperty("dbUser");
-			logger.info("dbUser: " + dbUser);
-
-			dbPasswd = conf.getProperty("dbPasswd");
 
 			tsdbHost = conf.getProperty("tsdb.host");
 			tsdbPort = Integer.parseInt(conf.getProperty("tsdb.port"));
@@ -45,18 +31,6 @@ public class Constant {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public static String getDbPasswd() {
-		return dbPasswd;
-	}
-
-	public static String getDbUrl() {
-		return dbUrl;
-	}
-
-	public static String getDbUser() {
-		return dbUser;
 	}
 
 	public static String getSinaUserFriendsPath() {

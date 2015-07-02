@@ -9,26 +9,10 @@
 	</formats>
 	<baseDirectory>${project.artifactId}</baseDirectory>
 	<fileSets>
-		<fileSet>
-			<directory>src/main/resources</directory>
-			<includes>
-				<include>logback.xml</include>
-				<include>core-site.xml</include>
-				<include>hdfs-site.xml</include>
-				<include>tsdb.properties</include>
-				<include>cache-config.properties</include>
-				<include>super.properties</include>
-			</includes>
-			<outputDirectory>/conf</outputDirectory>
-			<filtered>true</filtered>
-		</fileSet>
-		<fileSet>
-			<directory>ik_dic</directory>
-			<includes>
-				<include>*</include>
-			</includes>
-			<outputDirectory>/ik_dic</outputDirectory>
-		</fileSet>
+		<!-- <fileSet> <directory>src/main/resources</directory> <includes> <include>logback.xml</include> 
+			<include>tsdb.properties</include> <include>cache-config.properties</include> 
+			<include>super.properties</include> </includes> <outputDirectory>/conf</outputDirectory> 
+			<filtered>true</filtered> </fileSet> -->
 		<fileSet>
 			<directory>src/main/bin</directory>
 			<includes>

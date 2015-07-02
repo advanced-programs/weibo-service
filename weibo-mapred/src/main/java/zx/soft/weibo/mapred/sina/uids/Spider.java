@@ -1,11 +1,15 @@
 package zx.soft.weibo.mapred.sina.uids;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import zx.soft.redis.client.cache.Cache;
 import zx.soft.weibo.mapred.hdfs.HdfsWriter;
 
 public class Spider implements Runnable {
+
+	private static Logger logger = LoggerFactory.getLogger(Spider.class);
 
 	private final SinaRelationshipDao relationshipDao;
 
@@ -15,16 +19,16 @@ public class Spider implements Runnable {
 
 	private final Cache cache;
 
-	public static final String CLOSE_USERS_KEY = "dc:sina:closeUsers";
+	public static final String CLOSE_USERS_KEY = "sent:sina:closeUsers";
 
-	public static final String PROCESSED_USERS_KEY = "dc:sina:processedUsers";
+	public static final String PROCESSED_USERS_KEY = "sent:sina:processedUsers";
 
-	public static final String WAIT_USERS_KEY = "dc:sina:waitUsers";
+	public static final String WAIT_USERS_KEY = "sent:sina:waitUsers";
 
 	/**
 	 * 如果members不在key2和key3所关联的set中，则保存到key1所关联的set中
 	 */
-	public static final String saddIfNotExistOthers_script = "local count = 0\n" //
+	public static final String SADD_IF_NOT_EXIST_Others_script = "local count = 0\n" //
 			+ "for i, uid in ipairs(ARGV) do\n" //
 			+ "    if redis.call('sismember', KEYS[2], uid) == 0 and redis.call('sismember', KEYS[3], uid) == 0 then\n" //
 			+ "        redis.call('sadd', KEYS[1], uid)\n" //
@@ -35,7 +39,8 @@ public class Spider implements Runnable {
 
 	public Spider(String uid, final Cache cache, HdfsWriter writer, SinaRelationshipDao relationshipDao) {
 		if (StringUtils.isEmpty(uid)) {
-			throw new IllegalArgumentException("uid is not empty");
+			logger.error("Uid is empty!");
+			throw new IllegalArgumentException("uid is empty");
 		}
 		this.uid = uid;
 		this.cache = cache;
@@ -49,12 +54,14 @@ public class Spider implements Runnable {
 			cache.sadd(PROCESSED_USERS_KEY, uid);
 
 			String[] friendsIds = relationshipDao.getFriendsIds(uid);
+			String[] followersIds = relationshipDao.getFollowersIds(uid);
 			save(uid, friendsIds);
 			String[] keys = new String[] { WAIT_USERS_KEY, PROCESSED_USERS_KEY, CLOSE_USERS_KEY };
-			cache.eval(saddIfNotExistOthers_script, keys, friendsIds);
-			cache.eval(saddIfNotExistOthers_script, keys, relationshipDao.getFollowersIds(uid));
+			cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, friendsIds);
+			cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, followersIds);
 		} catch (Exception e) {
-			throw new RuntimeException("uid: " + uid, e);
+			// 会出现20003错误，表示用户不存在
+			logger.error("Error Uid:{}", uid);
 		}
 	}
 

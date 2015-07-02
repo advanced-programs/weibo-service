@@ -16,7 +16,6 @@ import zx.soft.utils.retry.RetryHandler;
 import zx.soft.utils.threads.ApplyThreadPool;
 import zx.soft.weibo.mapred.hdfs.HdfsWriter;
 import zx.soft.weibo.mapred.hdfs.HdfsWriterSimpleImpl;
-import zx.soft.weibo.mapred.tsdb.TsdbReporter;
 
 public class SpiderSinaUidsMain {
 
@@ -36,8 +35,9 @@ public class SpiderSinaUidsMain {
 			cache.sadd(Spider.WAIT_USERS_KEY, seedUid);
 		}
 
-		TsdbReporter reporter = new TsdbReporter(Constant.getTsdbHost(), Constant.getTsdbPort());
-		reporter.addReport(new GatherQueueReport(cache));
+		// 暂时不开放TSDB统计功能
+		//		TsdbReporter reporter = new TsdbReporter(Constant.getTsdbHost(), Constant.getTsdbPort());
+		//		reporter.addReport(new GatherQueueReport(cache));
 
 		ClientDao clientDao = new HttpClientDaoImpl();
 		SinaRelationshipDao dao = getSinaRelationshipDao(clientDao);
@@ -52,7 +52,7 @@ public class SpiderSinaUidsMain {
 			}
 		}));
 
-		try (HdfsWriter writer = new HdfsWriterSimpleImpl(Constant.getSinaUserFriendsPath())) {
+		try (HdfsWriter writer = new HdfsWriterSimpleImpl(Constant.getSinaUserFriendsPath());) {
 			while (count-- > 0 && !pool.isShutdown()) {
 				String uid = cache.spop(Spider.WAIT_USERS_KEY);
 				if (uid != null) {
@@ -68,6 +68,8 @@ public class SpiderSinaUidsMain {
 					logger.info("WaitUsers queue is empty, exit...");
 					break;
 				}
+				// 由于请求次数过多会达到上线，所以休息0.5秒
+				Thread.sleep(500);
 			}
 			pool.shutdown();
 			pool.awaitTermination(30, TimeUnit.SECONDS);

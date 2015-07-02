@@ -16,7 +16,7 @@ public class UsersShow {
 	public static void main(String[] args) {
 
 		SinaWeiboAPI api = new SinaWeiboAPI(new HttpClientDaoImpl());
-		SinaDomain sinaDomain = api.usersShow("1732243641");
+		SinaDomain sinaDomain = api.usersShow("1586302422");
 		System.out.println(JsonUtils.toJson(sinaDomain));
 
 	}

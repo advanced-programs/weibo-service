@@ -24,21 +24,12 @@
 			<artifactId>redis-client</artifactId>
 			<version>1.3.0</version>
 		</dependency>
-		<!-- CDH5 -->
-		<!-- <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-hadoop-cdh5-dependencies</artifactId> 
-			<version>1.0.0</version> </dependency> <dependency> <groupId>org.kitesdk</groupId> 
-			<artifactId>kite-hbase-cdh5-dependencies</artifactId> <version>1.0.0</version> 
-			</dependency> <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-hadoop-cdh5-test-dependencies</artifactId> 
-			<version>1.0.0</version> </dependency> <dependency> <groupId>org.kitesdk</groupId> 
-			<artifactId>kite-hbase-cdh5-test-dependencies</artifactId> <version>1.0.0</version> 
-			</dependency> <dependency> <groupId>org.kitesdk</groupId> <artifactId>kite-tools-cdh5</artifactId> 
-			<version>1.0.0</version> </dependency> <dependency> <groupId>org.deeplearning4j</groupId> 
-			<artifactId>spark-cdh5</artifactId> <version>0.0.3.3.1.alpha1</version> </dependency> 
-			<dependency> <groupId>com.facebook.presto</groupId> <artifactId>presto-hive-cdh5</artifactId> 
-			<version>0.107</version> </dependency> -->
-		<!-- 其他包 -->
-		<!-- <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-client</artifactId> 
-			<version>2.7.0</version> </dependency> -->
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<!-- Hadoop组件 -->
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
@@ -47,63 +38,61 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
+		<!-- Http组件-适合CDH5.3.3版本 -->
 		<dependency>
-			<groupId>org.apache.mrunit</groupId>
-			<artifactId>mrunit</artifactId>
-			<classifier>hadoop1</classifier>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.5</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.2.5</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<!-- 日志组件 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+		<!-- 测试包 -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.apache.mrunit</groupId>
+			<artifactId>mrunit</artifactId>
+			<classifier>hadoop1</classifier>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kohsuke.stapler</groupId>
-			<artifactId>json-lib</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>logback.xml</exclude>
-						<exclude>core-site.xml</exclude>
-						<exclude>hdfs-site.xml</exclude>
-						<exclude>tsdb.properties</exclude>
-						<exclude>cache-config.properties</exclude>
-						<exclude>super.properties</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/distribution.xml</descriptor>
-					</descriptors>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
 				</configuration>
 				<executions>
 					<execution>
@@ -115,86 +104,10 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>sql-maven-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>5.1.25</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<driver>com.mysql.jdbc.Driver</driver>
-					<url>jdbc:mysql://127.0.0.1:3306</url>
-					<username>integration</username>
-					<password></password>
-					<srcFiles>
-						<srcFile>src/test/sql/cookies.sql</srcFile>
-					</srcFiles>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.6.3.201306030806</version>
-				<executions>
-					<execution>
-						<id>prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 
 		<finalName>${project.artifactId}-${project.version}</finalName>
 
 	</build>
-
-	<profiles>
-		<profile>
-			<id>development</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<redis.servers>127.0.0.1</redis.servers>
-				<hdfs.url>file:///target/data</hdfs.url>
-				<sinaUserFriends.path>target/data/sinaUserFriends</sinaUserFriends.path>
-			</properties>
-		</profile>
-		<profile>
-			<id>production</id>
-			<properties>
-				<redis.servers>bigdata1,bigdata2,bigdata3,bigdata4,bigdata5,bigdata6</redis.servers>
-				<redis.port>6379</redis.port>
-				<redis.password>zxsoft</redis.password>
-				<hdfs.url>hdfs://bigdata4:19000</hdfs.url>
-				<sinaUserFriends.path>/user/ops/datacenter/sinaUserFriends</sinaUserFriends.path>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.12</version>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

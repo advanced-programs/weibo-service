@@ -6,7 +6,7 @@ import java.util.List;
 public class TsdbReporterExample {
 
 	public static void main(String[] args) {
-		TsdbReporter reporter = new TsdbReporter("wuhu020", 4242);
+		TsdbReporter reporter = new TsdbReporter("bigdata4", 4242);
 		reporter.addReport(new Reportable() {
 			@Override
 			public List<Tsdb> report() {
