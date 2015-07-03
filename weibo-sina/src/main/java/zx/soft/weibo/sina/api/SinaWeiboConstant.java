@@ -11,8 +11,9 @@ public class SinaWeiboConstant {
 	/**
 	 * 基本接口
 	 * source:采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
+	 * https://api.weibo.com/2/
 	 */
-	public static final String ROOT_URL = "https://api.weibo.com/2/";
+	public static final String ROOT_URL = "http://api.weibo.com/2/";
 
 	/**
 	 * 1、粉丝服务
