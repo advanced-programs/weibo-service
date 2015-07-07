@@ -122,10 +122,10 @@ public class SinaWeiboAPI {
 	 * 根据用户ID获取用户信息
 	 * uid:需要查询的用户ID
 	 */
-	public SinaDomain usersShow(String uid) {
+	public SinaDomain usersShow(String uid, String cookie) {
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("uid", uid)
 				.build();
-		String data = clientDao.doGet(requestURL.getURL());
+		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTree(data);
 		return result;
 	}

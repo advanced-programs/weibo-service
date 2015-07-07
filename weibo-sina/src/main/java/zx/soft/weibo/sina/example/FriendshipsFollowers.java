@@ -1,6 +1,5 @@
 package zx.soft.weibo.sina.example;
 
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import zx.soft.utils.http.HttpClientDaoImpl;
@@ -14,14 +13,14 @@ public class FriendshipsFollowers {
 	public static void main(String[] args) {
 
 		SinaWeiboAPI api = new SinaWeiboAPI(new HttpClientDaoImpl());
-		//		SinaDomain sinaDomain = api.friendshipsFollowers("1642591402", 10, 0, 1);
-		//		System.out.println(JsonUtils.toJson(sinaDomain));
+		SinaDomain sinaDomain = api.friendshipsFollowers("1642591402", 10, 0, 1);
+		System.out.println(JsonUtils.toJson(sinaDomain));
 
-		ThreadPoolExecutor pool = ApplyThreadPool.getThreadPoolExector(8);
-
-		for (int i = 0; i < 20000; i++) {
-			pool.execute(new FollowersRunnable(api, "1642591402"));
-		}
+		//		ThreadPoolExecutor pool = ApplyThreadPool.getThreadPoolExector(8);
+		//
+		//		for (int i = 0; i < 20000; i++) {
+		//			pool.execute(new FollowersRunnable(api, "1642591402"));
+		//		}
 
 	}
 
