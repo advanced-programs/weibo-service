@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import zx.soft.utils.chars.JavaPattern;
+import zx.soft.utils.codec.URLCodecUtils;
 import zx.soft.utils.config.ConfigUtil;
 import zx.soft.utils.http.ClientDao;
 import zx.soft.utils.json.JsonNodeUtils;
@@ -125,6 +126,17 @@ public class SinaWeiboAPI {
 	public SinaDomain usersShow(String uid, String cookie) {
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("uid", uid)
 				.build();
+		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
+		SinaDomain result = parseJsonTree(data);
+		return result;
+	}
+
+	/**
+	 * 根据用户screen_name获取用户信息
+	 */
+	public SinaDomain usersShowScreenName(String screenName, String cookie) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("screen_name",
+				URLCodecUtils.encoder(screenName, "UTF-8")).build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTree(data);
 		return result;
