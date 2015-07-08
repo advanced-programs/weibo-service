@@ -84,9 +84,10 @@ public class SinaWeiboAPI {
 	public SinaDomain statusesUserTimelineByScreenName(String screenName, String sinceId, String maxId, int count,
 			int page, int baseApp, int feature, int trimUser) {
 		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, superid)
-				.setParams("screen_name", screenName).setParams("since_id", sinceId).setParams("max_id", maxId)
-				.setParams("count", count + "").setParams("page", page + "").setParams("base_app", baseApp + "")
-				.setParams("feature", feature + "").setParams("trim_user", trimUser + "").build();
+				.setParams("screen_name", URLCodecUtils.encoder(screenName, "UTF-8")).setParams("since_id", sinceId)
+				.setParams("max_id", maxId).setParams("count", count + "").setParams("page", page + "")
+				.setParams("base_app", baseApp + "").setParams("feature", feature + "")
+				.setParams("trim_user", trimUser + "").build();
 		String data = clientDao.doGet(requestURL.getURL());
 		SinaDomain result = parseJsonTree(data);
 		return result;
