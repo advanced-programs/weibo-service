@@ -1,5 +1,9 @@
 package zx.soft.weibo.sina.api;
 
+import java.util.Properties;
+
+import zx.soft.utils.config.ConfigUtil;
+
 /**
  * 新浪微博API相关常量
  *
@@ -11,9 +15,15 @@ public class SinaWeiboConstant {
 	/**
 	 * 基本接口
 	 * source:采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
-	 * https://api.weibo.com/2/
+	 * http://api.weibo.com:80
+	 * https://api.weibo.com:443
 	 */
-	public static final String ROOT_URL = "http://api.weibo.com/2/";
+	private static String ROOT_URL;
+
+	static {
+		Properties props = ConfigUtil.getProps("sina-api.properties");
+		ROOT_URL = "http://" + props.getProperty("sina.api.proxy.ip") + "/2/";
+	}
 
 	/**
 	 * 1、粉丝服务
