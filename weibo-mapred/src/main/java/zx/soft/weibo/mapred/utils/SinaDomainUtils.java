@@ -3,7 +3,6 @@ package zx.soft.weibo.mapred.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import zx.soft.utils.json.JsonUtils;
 import zx.soft.utils.time.TimeUtils;
 import zx.soft.weibo.mapred.domain.User;
 import zx.soft.weibo.mapred.domain.UsersAndIds;
@@ -24,7 +23,6 @@ public class SinaDomainUtils {
 		for (Object friend : sinaDomain.getFieldValues("users")) {
 			tmp = (SinaDomain) friend;
 			ids.add(getString(tmp, "idstr"));
-			System.out.println(JsonUtils.toJson(tmp));
 			users.add(new User.Builder(getLong(tmp, "id"), getString(tmp, "idstr"), getString(tmp, "screen_name"),
 					getString(tmp, "name"), TimeUtils.tranSinaApiDate(getString(tmp, "created_at")))
 					.setUclass(getInt(tmp, "class")).setProvince(getInt(tmp, "province")).setCity(getInt(tmp, "city"))
@@ -59,7 +57,7 @@ public class SinaDomainUtils {
 					.setCredit_score(getInt(tmp, "credit_score")).setUser_ability(getInt(tmp, "user_ability"))
 					.setUrank(getInt(tmp, "urank")).build());
 		}
-		return new UsersAndIds(users, ids.toArray(new String[0]));
+		return new UsersAndIds(users, ids);
 	}
 
 	private static String getString(SinaDomain sinaDomain, String key) {

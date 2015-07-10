@@ -1,9 +1,11 @@
 package zx.soft.weibo.mapred.sina.uids;
 
+import zx.soft.weibo.mapred.domain.UsersAndIds;
+
 public interface SinaRelationshipDao {
 
-	String[] getFollowersIds(String uid);
+	UsersAndIds getFollowers(String uid);
 
-	String[] getFriendsIds(String uid);
+	UsersAndIds getFriends(String uid);
 
 }

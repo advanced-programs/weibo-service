@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import zx.soft.redis.client.cache.Cache;
+import zx.soft.weibo.mapred.domain.UsersAndIds;
 import zx.soft.weibo.mapred.hdfs.HdfsWriter;
 
 public class Spider implements Runnable {
@@ -52,13 +53,21 @@ public class Spider implements Runnable {
 	public void run() {
 		try {
 			cache.sadd(PROCESSED_USERS_KEY, uid);
-
-			String[] friendsIds = relationshipDao.getFriendsIds(uid);
-			String[] followersIds = relationshipDao.getFollowersIds(uid);
-			save(uid, friendsIds);
-			String[] keys = new String[] { WAIT_USERS_KEY, PROCESSED_USERS_KEY, CLOSE_USERS_KEY };
-			cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, friendsIds);
-			cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, followersIds);
+			// 分别获取用户关注和粉丝详细数据
+			UsersAndIds friends = relationshipDao.getFriends(uid);
+			UsersAndIds followers = relationshipDao.getFollowers(uid);
+			// 判断是否为空
+			if (friends != null && followers != null) {
+				/******************用户详细信息列表存入HBase*****************/
+				//
+				// TODO
+				//
+				/******************用户ID信息列表存入Redis集群*****************/
+				save(uid, friends.getIds().toArray(new String[0]));
+				String[] keys = new String[] { WAIT_USERS_KEY, PROCESSED_USERS_KEY, CLOSE_USERS_KEY };
+				cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, friends.getIds().toArray(new String[0]));
+				cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, followers.getIds().toArray(new String[0]));
+			}
 		} catch (Exception e) {
 			// 会出现20003错误，表示用户不存在
 			logger.error("Error Uid:{}", uid);

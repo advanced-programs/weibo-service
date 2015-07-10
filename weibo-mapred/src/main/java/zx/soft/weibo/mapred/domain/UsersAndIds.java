@@ -8,13 +8,13 @@ public class UsersAndIds implements Serializable {
 	private static final long serialVersionUID = 6388871380117667561L;
 
 	private List<User> users;
-	private String[] ids;
+	private List<String> ids;
 
 	public UsersAndIds() {
 		super();
 	}
 
-	public UsersAndIds(List<User> users, String[] ids) {
+	public UsersAndIds(List<User> users, List<String> ids) {
 		super();
 		this.users = users;
 		this.ids = ids;
@@ -28,11 +28,11 @@ public class UsersAndIds implements Serializable {
 		this.users = users;
 	}
 
-	public String[] getIds() {
+	public List<String> getIds() {
 		return ids;
 	}
 
-	public void setIds(String[] ids) {
+	public void setIds(List<String> ids) {
 		this.ids = ids;
 	}
 

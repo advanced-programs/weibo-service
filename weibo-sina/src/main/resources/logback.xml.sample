@@ -29,6 +29,12 @@
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 	</appender>
+	
+	<!-- org.apache.commons.httpclient包中的java类 -->
+	<logger name="org.apache.commons.httpclient" level="ERROR" addtivity="false">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
 
 	<root level="DEBUGE">
 		<appender-ref ref="FILE" />

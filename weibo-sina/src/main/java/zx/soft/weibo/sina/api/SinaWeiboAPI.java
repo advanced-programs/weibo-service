@@ -180,10 +180,10 @@ public class SinaWeiboAPI {
 	}
 
 	/*
-	 * 获取用户的粉丝列表
+	 * 获取用户的粉丝列表，最多能采集5000。
 	 * uid	: 需要查询的用户UID。
 	 * screen_name: 需要查询的用户昵称。
-	 * count: 单页返回的记录条数，默认为50，最大不超过200。
+	 * count: 单页返回的记录条数，默认为50，最大不超过200。****默认好像最大只有60个用户****
 	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
 	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
 	 */
