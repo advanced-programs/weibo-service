@@ -1,5 +1,7 @@
 package zx.soft.weibo.mapred.sina.uids;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class Spider implements Runnable {
 	public static final String PROCESSED_USERS_KEY = "sent:sina:processedUsers";
 
 	public static final String WAIT_USERS_KEY = "sent:sina:waitUsers";
+
+	private static final AtomicInteger COUNT = new AtomicInteger(0);
 
 	/**
 	 * 如果members不在key2和key3所关联的set中，则保存到key1所关联的set中
@@ -52,6 +56,8 @@ public class Spider implements Runnable {
 	@Override
 	public void run() {
 		try {
+			// 记录请求Uid次数
+			logger.info("Retriving uids' count:{}", COUNT.addAndGet(1));
 			cache.sadd(PROCESSED_USERS_KEY, uid);
 			// 分别获取用户关注和粉丝详细数据
 			UsersAndIds friends = relationshipDao.getFriends(uid);
@@ -69,7 +75,8 @@ public class Spider implements Runnable {
 				cache.eval(SADD_IF_NOT_EXIST_Others_script, keys, followers.getIds().toArray(new String[0]));
 			}
 		} catch (Exception e) {
-			// 会出现20003错误，表示用户不存在
+			// 多种异常，需要通过错误码识别处理
+			// TODO
 			logger.error("Error Uid:{}", uid);
 		}
 	}

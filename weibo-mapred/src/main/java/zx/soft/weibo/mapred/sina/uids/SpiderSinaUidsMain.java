@@ -42,7 +42,7 @@ public class SpiderSinaUidsMain {
 		ClientDao clientDao = new HttpClientDaoImpl();
 		SinaRelationshipDao dao = getSinaRelationshipDao(clientDao);
 
-		final int cpuNum = 32;
+		final int cpuNum = 64;
 		final ThreadPoolExecutor pool = ApplyThreadPool.getThreadPoolExector(cpuNum);
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
