@@ -51,7 +51,11 @@ public class SinaWeiboAPI {
 	 * count:单页返回的记录条数，最大不超过200，默认为20
 	 */
 	public SinaDomain statusesPublicTimeline(int count) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_PUBLIC_TIMELINE, superid).setParams(
+		return statusesPublicTimeline(count, superid);
+	}
+
+	public SinaDomain statusesPublicTimeline(int count, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_PUBLIC_TIMELINE, source).setParams(
 				"count", Math.min(count, 200) + "").build();
 		String data = clientDao.doGet(requestURL.getURL());
 		SinaDomain result = parseJsonTree(data);
@@ -72,7 +76,12 @@ public class SinaWeiboAPI {
 	 */
 	public SinaDomain statusesUserTimelineByUid(String uid, String sinceId, String maxId, int count, int page,
 			int baseApp, int feature, int trimUser) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, superid)
+		return statusesUserTimelineByUid(uid, sinceId, maxId, count, page, baseApp, feature, trimUser, superid);
+	}
+
+	public SinaDomain statusesUserTimelineByUid(String uid, String sinceId, String maxId, int count, int page,
+			int baseApp, int feature, int trimUser, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, source)
 				.setParams("uid", uid).setParams("since_id", sinceId).setParams("max_id", maxId)
 				.setParams("count", count + "").setParams("page", page + "").setParams("base_app", baseApp + "")
 				.setParams("feature", feature + "").setParams("trim_user", trimUser + "").build();
@@ -83,7 +92,13 @@ public class SinaWeiboAPI {
 
 	public SinaDomain statusesUserTimelineByScreenName(String screenName, String sinceId, String maxId, int count,
 			int page, int baseApp, int feature, int trimUser) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, superid)
+		return statusesUserTimelineByScreenName(screenName, sinceId, maxId, count, page, baseApp, feature, trimUser,
+				superid);
+	}
+
+	public SinaDomain statusesUserTimelineByScreenName(String screenName, String sinceId, String maxId, int count,
+			int page, int baseApp, int feature, int trimUser, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.STATUSES_USER_TIMELINE, source)
 				.setParams("screen_name", URLCodecUtils.encoder(screenName, "UTF-8")).setParams("since_id", sinceId)
 				.setParams("max_id", maxId).setParams("count", count + "").setParams("page", page + "")
 				.setParams("base_app", baseApp + "").setParams("feature", feature + "")
@@ -108,7 +123,12 @@ public class SinaWeiboAPI {
 	 */
 	public SinaDomain commentsShow(String cookie, String wid, String sinceId, String maxId, int count, int page,
 			int filterByAuthor) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.COMMENTS_SHOW, superid).setParams("id", wid)
+		return commentsShow(cookie, wid, sinceId, maxId, count, page, filterByAuthor, superid);
+	}
+
+	public SinaDomain commentsShow(String cookie, String wid, String sinceId, String maxId, int count, int page,
+			int filterByAuthor, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.COMMENTS_SHOW, source).setParams("id", wid)
 				.setParams("since_id", sinceId).setParams("max_id", maxId).setParams("count", count + "")
 				.setParams("page", page + "").setParams("filter_by_author", filterByAuthor + "").build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
@@ -125,7 +145,11 @@ public class SinaWeiboAPI {
 	 * uid:需要查询的用户ID
 	 */
 	public SinaDomain usersShow(String uid, String cookie) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("uid", uid)
+		return usersShow(uid, cookie, superid);
+	}
+
+	public SinaDomain usersShow(String uid, String cookie, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, source).setParams("uid", uid)
 				.build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTree(data);
@@ -136,7 +160,11 @@ public class SinaWeiboAPI {
 	 * 根据用户screen_name获取用户信息
 	 */
 	public SinaDomain usersShowScreenName(String screenName, String cookie) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, superid).setParams("screen_name",
+		return usersShowScreenName(screenName, cookie, superid);
+	}
+
+	public SinaDomain usersShowScreenName(String screenName, String cookie, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.USERS_SHOW, source).setParams("screen_name",
 				URLCodecUtils.encoder(screenName, "UTF-8")).build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTree(data);
@@ -156,7 +184,11 @@ public class SinaWeiboAPI {
 	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
 	 */
 	public SinaDomain friendshipsFriends(String uid, int count, int cursor, int trim_status) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FRIEDNS, superid)
+		return friendshipsFriends(uid, count, cursor, trim_status, superid);
+	}
+
+	public SinaDomain friendshipsFriends(String uid, int count, int cursor, int trim_status, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FRIEDNS, source)
 				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "")
 				.setParams("trim_status", trim_status + "").build();
 		String data = clientDao.doGet(requestURL.getURL());
@@ -172,7 +204,11 @@ public class SinaWeiboAPI {
 	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
 	 */
 	public SinaDomain friendshipsFriendsIDs(String uid, int count, int cursor, String cookie) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FRIENDS_IDS, superid)
+		return friendshipsFriendsIDs(uid, count, cursor, cookie, superid);
+	}
+
+	public SinaDomain friendshipsFriendsIDs(String uid, int count, int cursor, String cookie, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FRIENDS_IDS, source)
 				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTreeIDs(data);
@@ -188,7 +224,11 @@ public class SinaWeiboAPI {
 	 * trim_status: 返回值中user字段中的status字段开关，0：返回完整status字段、1：status字段仅返回status_id，默认为1。
 	 */
 	public SinaDomain friendshipsFollowers(String uid, int count, int cursor, int trim_status) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS, superid)
+		return friendshipsFollowers(uid, count, cursor, trim_status, superid);
+	}
+
+	public SinaDomain friendshipsFollowers(String uid, int count, int cursor, int trim_status, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS, source)
 				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "")
 				.setParams("trim_status", trim_status + "").build();
 		String data = clientDao.doGet(requestURL.getURL());
@@ -204,7 +244,11 @@ public class SinaWeiboAPI {
 	 * cursor: 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
 	 */
 	public SinaDomain friendshipsFollowersIDs(String uid, int count, int cursor, String cookie) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FOLLOWERS_IDS, superid)
+		return friendshipsFollowersIDs(uid, count, cursor, cookie, superid);
+	}
+
+	public SinaDomain friendshipsFollowersIDs(String uid, int count, int cursor, String cookie, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIEDNSHIPS_FOLLOWERS_IDS, source)
 				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
 		String data = clientDao.doGet(requestURL.getURL(), cookie, "UTF-8");
 		SinaDomain result = parseJsonTreeIDs(data);
@@ -217,7 +261,11 @@ public class SinaWeiboAPI {
 	 * count: 返回的记录条数，默认为20，最大不超过200。
 	 */
 	public SinaDomain friendshipsFollowersActive(String uid, int count, int cursor) {
-		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS_ACTIVE, superid)
+		return friendshipsFollowersActive(uid, count, cursor, superid);
+	}
+
+	public SinaDomain friendshipsFollowersActive(String uid, int count, int cursor, String source) {
+		RequestURL requestURL = new RequestURL.Builder(SinaWeiboConstant.FRIENDSHIPS_FOLLOWERS_ACTIVE, source)
 				.setParams("uid", uid).setParams("count", count + "").setParams("cursor", cursor + "").build();
 		String data = clientDao.doGet(requestURL.getURL());
 		SinaDomain result = parseJsonTree(data);
