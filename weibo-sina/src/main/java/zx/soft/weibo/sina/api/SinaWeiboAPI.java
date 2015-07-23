@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.codehaus.jackson.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +15,8 @@ import zx.soft.utils.http.ClientDao;
 import zx.soft.utils.json.JsonNodeUtils;
 import zx.soft.weibo.sina.domain.RequestURL;
 import zx.soft.weibo.sina.domain.SinaDomain;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * 新浪微博API
@@ -280,7 +281,7 @@ public class SinaWeiboAPI {
 	private SinaDomain parseJsonTree(String jsonStr) {
 		SinaDomain result = new SinaDomain();
 		JsonNode node = JsonNodeUtils.getJsonNode(jsonStr);
-		Iterator<String> fieldNames = node.getFieldNames();
+		Iterator<String> fieldNames = node.fieldNames();
 		String field = "", value = "";
 		JsonNode tnode = null;
 		while (fieldNames.hasNext()) {
@@ -321,7 +322,7 @@ public class SinaWeiboAPI {
 	private SinaDomain parseJsonTreeIDs(String jsonStr) {
 		SinaDomain result = new SinaDomain();
 		JsonNode node = JsonNodeUtils.getJsonNode(jsonStr);
-		Iterator<String> fieldNames = node.getFieldNames();
+		Iterator<String> fieldNames = node.fieldNames();
 		String field = "", value = "";
 		JsonNode tnode = null;
 		while (fieldNames.hasNext()) {
