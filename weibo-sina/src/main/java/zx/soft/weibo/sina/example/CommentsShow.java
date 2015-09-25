@@ -7,7 +7,7 @@ import zx.soft.weibo.sina.domain.SinaDomain;
 
 /**
  * 根据微博ID返回某条微博的评论列表
- * 
+ *
  * @author wanggang
  *
  */

@@ -18,6 +18,12 @@
 			<groupId>zx.soft</groupId>
 			<artifactId>common-utils</artifactId>
 			<version>1.2.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>fr.inria.powerapi.sensor</groupId>
+					<artifactId>sensor-cpu-sigar</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- Http组件-适合CDH5.3.3版本 -->
 		<dependency>
