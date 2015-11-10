@@ -1,9 +1,12 @@
 package zx.soft.weibo.mapred.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-import zx.soft.utils.time.TimeUtils;
 import zx.soft.weibo.mapred.domain.User;
 import zx.soft.weibo.mapred.domain.UsersAndIds;
 import zx.soft.weibo.sina.domain.SinaDomain;
@@ -24,7 +27,7 @@ public class SinaDomainUtils {
 			tmp = (SinaDomain) friend;
 			ids.add(getString(tmp, "idstr"));
 			users.add(new User.Builder(getLong(tmp, "id"), getString(tmp, "idstr"), getString(tmp, "screen_name"),
-					getString(tmp, "name"), TimeUtils.tranSinaApiDate(getString(tmp, "created_at")))
+					getString(tmp, "name"), tranSinaApiDate(getString(tmp, "created_at")))
 					.setUclass(getInt(tmp, "class")).setProvince(getInt(tmp, "province")).setCity(getInt(tmp, "city"))
 					.setLocation(getString(tmp, "location")).setDescription(getString(tmp, "description"))
 					.setUrl(getString(tmp, "url")).setProfile_image_url(getString(tmp, "profile_image_url"))
@@ -58,6 +61,14 @@ public class SinaDomainUtils {
 					.setUrank(getInt(tmp, "urank")).build());
 		}
 		return new UsersAndIds(users, ids);
+	}
+
+	public static Date tranSinaApiDate(String timeStr) {
+		try {
+			return new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US).parse(timeStr);
+		} catch (ParseException e) {
+			throw null;
+		}
 	}
 
 	private static String getString(SinaDomain sinaDomain, String key) {

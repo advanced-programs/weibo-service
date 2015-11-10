@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>weibo-service</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.2</version>
 	<packaging>pom</packaging>
 	<name>Weibo Service</name>
 	<description>Weibo service for sina, tencent and so on.</description>
